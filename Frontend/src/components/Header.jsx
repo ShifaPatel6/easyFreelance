@@ -15,7 +15,7 @@ const Header =()=>{
     <button class="btn-primary">Get started free ↗</button>
   </div>
 </div>
-        </>
+  </>
     )
 
 

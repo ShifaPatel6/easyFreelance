@@ -1,27 +1,27 @@
 import React from 'react'
 import "../css/Layoutstyle.css"
-export const Layout = ({children}) => {
-
+import {Outlet} from "react-router-dom"
+import Navbar from '../components/Navbar';
+import MainHeader from '../components/mainHeader';
+ const Layout = () => {
   return (
     <>
-    <div  className='max-width: 1536px header-sec p-6 justify-between display: flex' >
+  
+    <div className='flex flex-col  min-h-screen'>
+   <MainHeader/>
+  {/* Sidebar left - fixed */}
 
-        <div className='items-center '>
-            <h1>Logo</h1>
+  {/* Right side - header + content */}
+  <div className='flex flex-1'>
+  <Navbar/>
+   
+    <main className='flex-1 flex justify-center items-center'>
+      <Outlet/>
+    </main>
+  </div>
 
-        </div>
-
-        <div   className=' display: flex  gap-6 '>
-    <h1> Header  </h1>
-          <h1> Header  </h1>
-             <h1> Header  </h1>
-        </div>
-      
-      
-        
-        </div>
-    <div>Sidebar</div>
-    <div>{children}</div>
-    </>
+</div>
+      </>
   )
 }
+export default Layout;

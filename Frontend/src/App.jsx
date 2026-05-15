@@ -1,30 +1,36 @@
-import { Layout } from "./Common/Layout"
+import Layout from "./Common/Layout"
 import { LandingPage } from "./LandingPage"
 import Dashboard from "./Pages/Dashboard"
 import { Login } from "./Pages/Login";
 import { Register } from "./Pages/Register"
-import { Routes, Route } from 'react-router-dom';
+import { RouterProvider,Route ,createBrowserRouter ,createRoutesFromElements} from 'react-router-dom';
+import ProtectedRoutes  from "./routes/protectedRoutes"
+import PublicRoute from "./routes/publicRoute";
 
 
-
-function App() {
-
-  return (
-    <>
-    <Routes>
-
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+   <>
+   <Route element={<PublicRoute />}>
    <Route path='/' element={<Login/>}/>
-
    <Route path='/register' element={<Register/>}/>
-  <Route path='/landing' element={<LandingPage/>}/>
-
-    </Routes>
-        {/* <Layout>
-          <Dashboard></Dashboard>
-        </Layout> */}
-
-    </>
-  )
-}
+   </Route>
+  <Route element={<ProtectedRoutes />}> 
+  <Route element={<Layout/>}>
+  {/* <Route path='/landing' element={<LandingPage/>}/> */}
+  <Route path='/dashboard' element={<Dashboard/>}/>
+   </Route>
+  <Route path='*' element={<Login/>} />
+  </Route>
+</>
+    
+        ))
+        const App = () => {
+          return(
+            <RouterProvider router={router} />
+         
+          )
+        }
+    
 
 export default App
