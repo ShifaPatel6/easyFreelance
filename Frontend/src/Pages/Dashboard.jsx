@@ -1,10 +1,12 @@
 import React from "react";
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 
 const Dashboard= ()=>{
     return (
         <>
-        <h1>Dashboard</h1>
+     
+      <h3>dashboard</h3>
+        
     
         </>
     )

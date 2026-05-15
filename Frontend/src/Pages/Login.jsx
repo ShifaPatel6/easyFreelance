@@ -25,11 +25,22 @@ export const Login = () => {
     if (error) {
       setError(error.message)
     } else {
-      navigate('/landing') // ✅ sahi redirect
-    }
-
-    setLoading(false)
-  }
+      const {data:UserData}= await supabase
+      .from('User')
+     .select('name, plan')
+      .single()
+      navigate('/dashboard', {
+        state: {
+          name: UserData.name,
+          plan: UserData.plan
+        }
+      })   
+          console.log(UserData);
+}
+  
+  
+  setLoading(false)
+}
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen w-full">

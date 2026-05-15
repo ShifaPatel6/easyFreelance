@@ -12,4 +12,5 @@ export const colors = {
   error: '#ef4444',
   success: '#22c55e',
   background:'#534AB7',
+  lightBackground:'#f1f5f9 ',
 }
