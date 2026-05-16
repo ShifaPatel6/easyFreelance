@@ -33,7 +33,7 @@ export const Login = () => {
       .from('User')
      .select('name, plan')
       .single()
-      navigate('/dashboard')  
+      navigate('/BriefAnalyzer')  
       const name = UserData.name.split(' ')[0]
       console.log(name);
       

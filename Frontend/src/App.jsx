@@ -6,6 +6,7 @@ import { Register } from "./Pages/Register"
 import { RouterProvider,Route ,createBrowserRouter ,createRoutesFromElements} from 'react-router-dom';
 import ProtectedRoutes  from "./routes/protectedRoutes"
 import PublicRoute from "./routes/publicRoute";
+import BriefAnalyzer from "./Pages/BriefAnalyzer";
 
 
   const router = createBrowserRouter(
@@ -14,11 +15,13 @@ import PublicRoute from "./routes/publicRoute";
    <Route element={<PublicRoute />}>
    <Route path='/' element={<Login/>}/>
    <Route path='/register' element={<Register/>}/>
+     <Route path='/landing' element={<LandingPage/>}/>
+
    </Route>
   <Route element={<ProtectedRoutes />}> 
   <Route element={<Layout/>}>
-  {/* <Route path='/landing' element={<LandingPage/>}/> */}
-  <Route path='/dashboard' element={<Dashboard/>}/>
+  {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
+  <Route path='/BriefAnalyzer' element={<BriefAnalyzer/>}/>
    </Route>
   <Route path='*' element={<Login/>} />
   </Route>
