@@ -3,6 +3,7 @@ import { Eye, EyeOff } from 'lucide-react'
 import { supabase } from '../Supabse/supabseClient'
 import { Link, useNavigate } from 'react-router-dom'
 import { colors } from '../CommonCss/commoncss'
+import usePlanStore from '../Store/PlanStore'
 
 export const Login = () => {
   const [email, setEmail]       = useState("")
@@ -11,6 +12,9 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading]   = useState(false)
   const navigate = useNavigate()
+  const setPlan = usePlanStore((state)=> state.setPlan)
+  
+
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -29,19 +33,14 @@ export const Login = () => {
       .from('User')
      .select('name, plan')
       .single()
-      navigate('/dashboard', {
-        state: {
-          name: UserData.name,
-          plan: UserData.plan
-        }
-      })   
-          console.log(UserData);
+      navigate('/dashboard')  
+      const name = UserData.name.split(' ')[0]
+      console.log(name);
+      
+      setPlan(UserData.plan, name)     
 }
-  
-  
   setLoading(false)
 }
-
   return (
     <div className="flex flex-col justify-center items-center min-h-screen w-full">
       <h1 className="font-bold text-xl mb-4">Login</h1>
