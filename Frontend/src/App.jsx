@@ -7,6 +7,7 @@ import { RouterProvider,Route ,createBrowserRouter ,createRoutesFromElements} fr
 import ProtectedRoutes  from "./routes/protectedRoutes"
 import PublicRoute from "./routes/publicRoute";
 import BriefAnalyzer from "./Pages/BriefAnalyzer";
+import { History } from "./Pages/History";
 
 
   const router = createBrowserRouter(
@@ -15,13 +16,14 @@ import BriefAnalyzer from "./Pages/BriefAnalyzer";
    <Route element={<PublicRoute />}>
    <Route path='/' element={<Login/>}/>
    <Route path='/register' element={<Register/>}/>
-     <Route path='/landing' element={<LandingPage/>}/>
+    <Route path='/landing' element={<LandingPage/>}/>
 
    </Route>
   <Route element={<ProtectedRoutes />}> 
   <Route element={<Layout/>}>
   {/* <Route path='/dashboard' element={<Dashboard/>}/> */}
   <Route path='/BriefAnalyzer' element={<BriefAnalyzer/>}/>
+  <Route path='/history' element={<History/>}/>
    </Route>
   <Route path='*' element={<Login/>} />
   </Route>

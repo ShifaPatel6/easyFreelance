@@ -1,6 +1,7 @@
 import React from 'react'
 import { NotepadText,LaptopMinimalCheck ,File ,Clock3,UserRoundPen} from 'lucide-react';
 import { colors } from '../CommonCss/commoncss';
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,23 +16,23 @@ import { colors } from '../CommonCss/commoncss';
         < div className='items-center gap-4 flex flex-col '>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200 w-full'>
        <Clock3 size={20} />
-        <h1 style={{color:colors.primary}}><a href="">Brief Analyzer</a> </h1>
+        <h1 style={{color:colors.primary}}><Link to="/BriefAnalyzer">Brief Analyzer</Link> </h1>
         </div>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200 w-full'>
        <NotepadText size={20} />
-        <h1 style={{color:colors.primary}}><a href="">Proposal Writer</a> </h1>
+        <h1 style={{color:colors.primary}}><Link to="/ProposalWriter">Proposal Writer</Link> </h1>
         </div>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200  w-full'>
        <File size={20} />
-        <h1 style={{color:colors.primary}}><a href="">Invoice Generator</a></h1>
+        <h1 style={{color:colors.primary}}><Link to="/InvoiceGenerator">Invoice Generator</Link> </h1>
         </div>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200  w-full'>
        <LaptopMinimalCheck size={20} />
-        <h1 style={{color:colors.primary}}><a href="">Follow-up Writer</a> </h1>
+        <h1 style={{color:colors.primary}}><Link to="/FollowUpWriter">Follow-up Writer</Link> </h1>
         </div>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200  w-full'>
        <UserRoundPen size={20} />
-        <h1 style={{color:colors.primary}}><a href="">Bio Writer</a> </h1>
+        <h1 style={{color:colors.primary}}><Link to="/BioWriter">Bio Writer</Link> </h1>
         </div>
 
     </div>
