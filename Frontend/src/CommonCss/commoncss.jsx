@@ -12,5 +12,24 @@ export const colors = {
   error: '#ef4444',
   success: '#22c55e',
   background:'#534AB7',
-  lightBackground:'#f1f5f9 ',
+  lightBackground:'#9a93e3 ',
 }
+
+export const RegularButton = styled.button`
+  background: ${colors.background};
+  color:white;
+  border-radius:9999px;
+ border: 1px solid #e2e8f0;
+  transition: background-color 0.3s ease;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: ${colors.lightBackground};
+  }
+
+   &:hover {
+    background: ${colors.lightBackground};
+  }
+ 
+  `
