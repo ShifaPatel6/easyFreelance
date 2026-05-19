@@ -33,3 +33,44 @@ export const RegularButton = styled.button`
   }
  
   `
+  export const Heading = styled.h1`
+  font-size: 1.875rem;
+     font-weight: 600;
+  color: ${ colors.textSecondary};
+  `
+  export const SubHeading = styled.h2`
+  font-size: 1.25rem;
+     font-weight: 500;
+  color: ${ colors.textSecondary};
+  `
+  export const OuterContainer = styled.div`
+  background: ${colors.white};
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  `
+
+  export const HeadingSubHeading = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+   margin-left: 2.25rem;
+  `
+
+  export const TableContainer = styled.table`
+  width: 100%;
+  th, td {
+    border: 1px solid ${colors.primaryLight};
+    padding: 0.75rem;
+    text-align: left;
+   
+  }
+  th {
+    background-color: ${colors.primaryLight};
+  }
+    tbody tr:nth-child(even) {
+    background-color: ${colors.primaryLight};
+    width:100%;
+  }
+  `
