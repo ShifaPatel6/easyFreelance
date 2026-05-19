@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors,RegularButton } from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading} from '../CommonCss/commoncss';
 import { useState } from 'react';
 import { History } from 'lucide-react';
 import {Link} from 'react-router-dom'
@@ -9,13 +9,12 @@ import {Link} from 'react-router-dom'
   const[result , setResult] = useState('');
   return (
     <>
-    <div className='flex flex-col p-10 gap-6'>
-    <div className='flex flex-col gap-3 ml-9'>
+    <OuterContainer >
+    <HeadingSubHeading>
     <div className='flex justify-between items-center'>
-  <div className='font-semibold text-3xl' style={{color: colors.textSecondary}}>
-    Brief Analyzer
-  </div>
-
+  <Heading>
+    Brief Analyzer  
+  </Heading>
 
   <RegularButton className="w-24 h-8 flex flex-row items-center justify-evenly p-2 " style={{backgroundColor: " #e2e8f0",color:'black'}}>
   <Link to="/history"> History</Link> 
@@ -24,9 +23,9 @@ import {Link} from 'react-router-dom'
 
 </div>
     <div>
-      Paste client message → AI clearly explains what they actually want
+     <h1> Paste client message → AI clearly explains what they actually want</h1> 
     </div>
-  </div>
+  </HeadingSubHeading>
 
   <div className='h-auto w-11/12 bg-slate-100 border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
 <div className='flex flex-row items-center gap-5 mb-4'>
@@ -58,7 +57,7 @@ import {Link} from 'react-router-dom'
   </div>
   </div>
 
-</div>
+</OuterContainer>
     </>
   )
 
