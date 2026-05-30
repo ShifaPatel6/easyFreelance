@@ -11,8 +11,12 @@ export const History = () => {
      History
     </Heading>
     <h1>Recent Analysis</h1>
+
       </HeadingSubHeading>
+      
+
 <Table></Table>
+    
     </OuterContainer>
     </>
   )
