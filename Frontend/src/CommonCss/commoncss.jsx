@@ -55,11 +55,12 @@ export const RegularButton = styled.button`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-   margin-left: 2.25rem;
   `
 
   export const TableContainer = styled.table`
-  width: 100%;
+  width: 91.66%;
+    
+
   th, td {
     border: 1px solid ${colors.primaryLight};
     padding: 0.75rem;
