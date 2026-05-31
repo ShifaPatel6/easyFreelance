@@ -75,3 +75,25 @@ export const RegularButton = styled.button`
     width:100%;
   }
   `
+
+  export const CardContainer = styled.div`
+  background: ${colors.primaryLight};
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  width: 80%;
+  margin: 0 auto;
+  max-height: 80vh;
+  border-radius: 0.5rem;
+  justify-content: center;
+z-index: 1000; 
+position: fixed;
+  `
+  export const InnerCard = styled.div`
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-height: 60vh;
+    overflow-y: auto; 
+  `
