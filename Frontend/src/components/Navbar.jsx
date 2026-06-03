@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
         </div>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200 w-full'>
        <NotepadText size={20} />
-        <h1 style={{color:colors.primary}}><Link to="/ProposalWriter">Proposal Writer</Link> </h1>
+        <h1 style={{color:colors.primary}}><Link to="/proposalWriter">Proposal Writer</Link> </h1>
         </div>
         < div className='flex items-center gap-2 p-3 hover:bg-slate-200  w-full'>
        <File size={20} />

@@ -4,6 +4,7 @@ import { X } from 'lucide-react';
 
 
  const Card = ({ onClose, children }) => {
+  
   return (
     <>
     

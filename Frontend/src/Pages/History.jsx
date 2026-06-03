@@ -1,17 +1,17 @@
 import React from 'react'
 import { Heading ,OuterContainer,HeadingSubHeading ,CardContainer ,InnerCard} from '../CommonCss/commoncss'
 import Table from '../components/Table'
-import { useState } from 'react';
+import { useState,useCallback } from 'react';
 import Card from '../components/Card';
 
 export const History = () => {
   const[selecetedRow,setSelectedRow] = useState(null);
   const [openModal,setOpenModal] = useState(false);
 
-  const handleViewModal = (row) => {
+  const handleViewModal = useCallback((row) => {
     setSelectedRow(row);
     setOpenModal(true);
-  }
+  }, []);
 
   return (
     <>
