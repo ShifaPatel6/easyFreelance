@@ -62,7 +62,6 @@ export const RegularButton = styled.button`
     
 
   th, td {
-    border: 1px solid ${colors.primaryLight};
     padding: 0.75rem;
     text-align: left;
    
@@ -71,7 +70,7 @@ export const RegularButton = styled.button`
     background-color: ${colors.primaryLight};
   }
     tbody tr:nth-child(even) {
-    background-color: ${colors.primaryLight};
+    // background-color: ${colors.primaryLight};
     width:100%;
   }
   `
@@ -97,3 +96,8 @@ position: fixed;
   max-height: 60vh;
     overflow-y: auto; 
   `
+  export const InputTag = styled.h1`
+  font-size: 0.80rem;
+     font-weight: 500;
+  color: ${ colors.textSecondary};
+  ` 

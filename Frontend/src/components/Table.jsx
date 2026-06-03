@@ -5,12 +5,11 @@ import { Eye } from 'lucide-react';
 import { colors } from '../CommonCss/commoncss';
 import { Pagination } from './Pagination';
 
-const Table = ({viewDes = false , onViewModal}) => {
+const  Table = ({viewDes = false , onViewModal}) => {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
 
-    
 const columns =['Date','Client Message','AI Analysis'];
 const rows = [
 
@@ -110,4 +109,4 @@ const itemsPerPage = 4;
     </>
   )
 }
-export default Table;
+export default React.memo(Table);

@@ -6,6 +6,7 @@ import { ArrowRight,ArrowLeft } from 'lucide-react';
 
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+    
 
     const handlePrevious = () => {
         if(currentPage > 1){
@@ -33,8 +34,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
              <RegularButton disabled={currentPage === totalPages} onClick={handleNext}
                 className ='px-3 py-2  max-w-14'>
                <ArrowRight size={18} />
-                {console.log(currentPage , totalPages)
-                }
+            
             </RegularButton>
         </div>
 
