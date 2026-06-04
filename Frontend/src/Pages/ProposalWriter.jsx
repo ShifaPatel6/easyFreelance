@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import InputCompo from '../Common/InputCompo';
 import { Dropdown } from '../Common/Dropdown';
+import { ChevronDown } from 'lucide-react';
+
 
 export const ProposalWriter = () => {
     const [label, setLabel] = useState('');
@@ -13,14 +15,16 @@ export const ProposalWriter = () => {
     const [budget, setBudget] = useState('');
     const [timeline, setTimeline] = useState('');
     const [skills, setSkills] = useState('');
+    const [error, setError] = useState({});
 
     const optionsarr = [
+        { label: 'Other', value: 'other' },
         { label: 'Web Development', value: 'web_dev' },
         { label: 'Graphic Design', value: 'graphic_design' },
         { label: 'Content Writing', value: 'content_writing' },
         { label: 'UI/UX Design', value: 'ui_ux_design' },
-    ]
 
+    ]
     return (
         <>
             <OuterContainer>
@@ -44,6 +48,7 @@ export const ProposalWriter = () => {
                                     placeholder="Client Name"
                                     value={clientName}
                                     onChange={(e) => setClientName(e.target.value)}
+                                        
                                     type="text"
                                     className='w-full p-2 rounded-xl'
                                 />
@@ -55,6 +60,7 @@ export const ProposalWriter = () => {
                                     placeholder="Select Project Type"
                                     onChange={setLabel}
                                 />
+                                <ChevronDown className='absolute right-4 top-9' />
                             </div>
                         </div>
 
@@ -75,30 +81,57 @@ export const ProposalWriter = () => {
                                 <InputCompo
                                     placeholder="e.g. 3"
                                     value={experience}
-                                    onChange={(e) => setExperience(e.target.value)}
+                                    onChange={(e) => {setExperience(e.target.value)
+                                    if(isNaN(e.target.value)){
+                                            setError({...error, experience:"Please enter valid experience in numbers"})
+                                    }else{
+                                        setError({...error, experience:""})
+                                    }
+                                    }}
                                     type="text"
                                     className='w-full p-2 rounded-xl'
                                 />
+                                {error.experience && <span className='text-red-500 text-sm'>{error.experience}</span>}
                             </div>
                             <div className='flex flex-col gap-2 flex-1'>
                                 <InputTag>Expected budget (Rs.)</InputTag>
                                 <InputCompo
                                     placeholder="e.g. 15000"
                                     value={budget}
-                                    onChange={(e) => setBudget(e.target.value)}
+                                    onChange={(e) => {
+                                        setBudget(e.target.value);
+                                        if(isNaN(e.target.value)){
+                                            setError({...error,budget:"Please enter valid budget in numbers"});
+                                        }else{
+                                            setError({...error ,budget:""});
+                                        }
+                                    }}
+                                    
                                     type="text"
                                     className='w-full p-2 rounded-xl'
                                 />
+                                {error.budget && <span className='text-red-500 text-sm'>{error.budget}</span>}
                             </div>
-                            <div className='flex flex-col gap-2 flex-1'>
+                            <div className='flex flex-col gap-2 flex-1 '>
                                 <InputTag>Timeline (weeks)</InputTag>
-                                <InputCompo
-                                    placeholder="e.g. 4"
+                                 <InputCompo
+                                    placeholder="e.g. 15000"
                                     value={timeline}
-                                    onChange={(e) => setTimeline(e.target.value)}
+                                    onChange={(e) => {
+                                        setTimeline(e.target.value);
+                                        if(isNaN(e.target.value)){
+                                            setError({...error,timeline:"Please enter valid timeline in numbers"});
+                                        }else{
+                                            setError({...error ,timeline:""});
+                                        }
+                                    }}
+                                    
                                     type="text"
                                     className='w-full p-2 rounded-xl'
                                 />
+                              
+                              
+                                {error.timeline && <span className='text-red-500 text-sm'>{error.timeline}</span>}
                             </div>
                         </div>
 
