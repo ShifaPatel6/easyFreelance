@@ -9,6 +9,7 @@ import PublicRoute from "./routes/publicRoute";
 import BriefAnalyzer from "./Pages/BriefAnalyzer";
 import { History } from "./Pages/History";
 import { ProposalWriter } from "./Pages/ProposalWriter";
+import {InvoiceGenerator} from "./Pages/InvoiceGenerator";
 
 
   const router = createBrowserRouter(
@@ -26,6 +27,7 @@ import { ProposalWriter } from "./Pages/ProposalWriter";
   <Route path='/BriefAnalyzer' element={<BriefAnalyzer/>}/>
   <Route path='/history' element={<History/>}/>
   <Route path='/proposalWriter' element={<ProposalWriter/>}/>
+  <Route path='/invoiceGenerator' element={<InvoiceGenerator/>}/>
    </Route>
   <Route path='*' element={<Login/>} />
   </Route>

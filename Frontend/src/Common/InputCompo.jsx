@@ -1,8 +1,14 @@
 import React from 'react'
 
- const InputCompo = ({ placeholder, value, onChange ,type, className}) => {
+ const InputCompo = ({ placeholder, value, onChange ,type, className ,label}) => {
   return (
-    <div>
+    <>
+    
+    
+    <div className='flex flex-col gap-1'>
+
+      
+      {label && <label>{label}</label>}
       <input
         type={type}
         placeholder={placeholder}
@@ -11,6 +17,7 @@ import React from 'react'
         className={className}
       />
     </div>
+    </>
   )
 }
 export default InputCompo;
