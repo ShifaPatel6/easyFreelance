@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading} from '../CommonCss/commoncss';
 import InputCompo from '../Common/InputCompo';
 import WorkedItemCompo from '../components/WorkedItemCompo';
+import InvoiceCompo from '../components/InvoiceCompo';
+
  const InvoiceGenerator = () => {
+    const[userDetail , setUserDetail ] =useState([{
+        name:"",
+        email:"",
+        bankDetail:""
+    }])
   return (
      <>
      <OuterContainer >
@@ -32,11 +39,10 @@ import WorkedItemCompo from '../components/WorkedItemCompo';
         <div className="w-full min-h-fit flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
             style={{backgroundColor: colors.primaryLight}}>
             Your Details
-            <InputCompo label="Name" placeholder="Your name" type="text" value="" className="w-full h-10 rounded-md p-3" />
-            <InputCompo label="Email" placeholder="Your Email" type="email" value="" className="w-full h-10 rounded-md p-3" />
-            <InputCompo label="UPI / bank details" placeholder="Your bank details" type="text" value="" className="w-full h-10 rounded-md p-3" />
+            <InputCompo label="Name" placeholder="Your name" type="text" value={userDetail.name} className="w-full h-10 rounded-md p-3" onChange={(e)=>setUserDetail(e.target.value)}/>
+            <InputCompo label="Email" placeholder="Your Email" type="email" value={userDetail.email} className="w-full h-10 rounded-md p-3" onChange={(e)=>setUserDetail(e.target.value)}/>
+            <InputCompo label="UPI / bank details" placeholder="Your bank details" type="text" value={userDetail.bankDetail} className="w-full h-10 rounded-md p-3" onChange={(e)=>setUserDetail(e.target.value)}/>
         </div>
-
         {/* Client Details */}
         <div className="w-full min-h-fit flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
             style={{backgroundColor: colors.primaryLight}}>
@@ -58,7 +64,7 @@ import WorkedItemCompo from '../components/WorkedItemCompo';
     {/* Right Column — Invoice Preview */}
     <div className="flex-1 min-h-full flex flex-col gap-3 rounded-2xl p-4 border-gray-300 border-2"
         style={{backgroundColor: colors.primaryLight}}>
-        Invoice Preview
+<InvoiceCompo />
     </div>
     
 

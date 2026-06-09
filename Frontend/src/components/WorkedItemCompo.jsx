@@ -1,9 +1,10 @@
 import React from 'react'
 import { CirclePlus } from 'lucide-react';
 import Workeditem from './Workeditem';
+import{useState, useCallback} from 'react';
 
- const WorkedItem = () => {
-    const[items,setItems] = React.useState(
+ const WorkedItemCompo = ({showAddbtn = true ,isPreview = true}) => {
+    const[items,setItems] = useState(
       Array(3).fill(null).map((_, i)=>{
         return {
           id: i + 1,
@@ -14,8 +15,7 @@ import Workeditem from './Workeditem';
         };
       })
     );
-
-    const handleItemsChange=React.useCallback((id ,feild,value)=>{
+    const handleItemsChange=useCallback((id ,feild,value)=>{
       setItems(prevItems => prevItems.map(i => i.id ===id ?{...i ,[feild]:value}: i))
     }, []);
     const handleAddItem =()=>{
@@ -27,7 +27,15 @@ import Workeditem from './Workeditem';
         amount: ''
       }])
     }
-   
+
+    const subTotal = items.reduce((total ,items)=>{
+     return total + (Number(items.amount))      
+    },0)
+
+    const gst = Math.floor(subTotal * 0.18)
+    const Total = gst + subTotal;
+
+    
   return (
     <>
     <div className='w-full flex flex-col gap-3 justify-center'>
@@ -45,12 +53,23 @@ import Workeditem from './Workeditem';
    ))}
  
    </div>
+   {
+    showAddbtn && 
     <div className="flex items-center gap-1  cursor-pointer" onClick={handleAddItem}>
       <CirclePlus size={16} />
-      <span >Add Item</span>
+      <span>Add Item</span>
     </div>
+ }
 </div>
+
+<div className={isPreview ? "flex justify-between mt-2 items-center": "flex flex-col text-right mt-4"}>  
+  
+<div>Subtotal :  ₹{subTotal.toLocaleString('en-IN')}</div>
+<div>GST(18%) : ₹{gst.toLocaleString('en-IN')}</div>
+<div className={isPreview ? "" :"text-lg mt-2"}>{isPreview ? "Total" : "Total Due" } : ₹{Total.toLocaleString('en-IN')}</div>
+</div>
+
     </>
   )
 }
-export default WorkedItem;
+export default WorkedItemCompo;
