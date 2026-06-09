@@ -9,7 +9,7 @@ import PublicRoute from "./routes/publicRoute";
 import BriefAnalyzer from "./Pages/BriefAnalyzer";
 import { History } from "./Pages/History";
 import { ProposalWriter } from "./Pages/ProposalWriter";
-import {InvoiceGenerator} from "./Pages/InvoiceGenerator";
+import InvoiceGenerator from "./Pages/InvoiceGenerator";
 
 
   const router = createBrowserRouter(

@@ -1,8 +1,8 @@
 import React from 'react'
 import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading} from '../CommonCss/commoncss';
 import InputCompo from '../Common/InputCompo';
-import {WorkedItem} from '../components/WorkedItem';
-export const InvoiceGenerator = () => {
+import WorkedItemCompo from '../components/WorkedItemCompo';
+ const InvoiceGenerator = () => {
   return (
      <>
      <OuterContainer >
@@ -50,7 +50,7 @@ export const InvoiceGenerator = () => {
         {/* Worked Items */}
        <div className="w-full min-h-32 flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
             style={{backgroundColor: colors.primaryLight}}>
-            <WorkedItem />
+            <WorkedItemCompo />
         </div>
 
     </div>
@@ -68,3 +68,4 @@ export const InvoiceGenerator = () => {
      </>
    )
 }
+export default React.memo(InvoiceGenerator);
