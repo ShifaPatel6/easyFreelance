@@ -1,28 +1,16 @@
 import React from 'react'
 import InputCompo from '../Common/InputCompo';
-import { CirclePlus } from 'lucide-react';
+import {memo} from 'react';
 
-export const WorkedItem = () => {
-    const [description, setDescription] = React.useState('');
+ const Workeditem = memo(({item , onItemChange}) => {
   return (
-    <>
-   
-    <div className='flex justify-around items-center gap-3'>
-      
-        <InputCompo label="Description" placeholder="Enter description" type="text" value={description} className="w-full h-10 rounded-md p-3"  onChange={(e) => setDescription(e.target.value)}
- />
-                <InputCompo label="Quantity" placeholder="Enter quantity" type="number" value="" className="w-full h-10 rounded-md p-3" />
+<div className='flex justify-around items-center gap-3' key={item.id}>
 
-        <InputCompo label="Rate" placeholder="Enter rate" type="number" value="" className="w-full h-10 rounded-md p-3" />
-                <InputCompo label="Amount" placeholder="Amount" type="number" value="" className="w-full h-10 rounded-md p-3" />
-            
-
-
-    </div>
-    <div className="flex items-center gap-1  cursor-pointer">
-      <CirclePlus size={16} />
-      <span>Add Item</span>
-    </div>
-    </>
-  )
-}
+         <InputCompo  placeholder="Enter description" type="text" value={item.description} className="w-full h-10 rounded-md p-3"  onChange={(e) => onItemChange(item.id, 'description', e.target.value)}/>
+          <InputCompo  placeholder="Enter quantity" type="number" value={item.quantity} className="w-full h-10 rounded-md p-3"  onChange={(e) => onItemChange(item.id, 'quantity', e.target.value)}/>
+          <InputCompo  placeholder="Enter rate" type="number" value={item.rate} className="w-full h-10 rounded-md p-3"  onChange={(e) => onItemChange(item.id, 'rate', e.target.value)}/>
+          <InputCompo  placeholder="Amount" type="number" value={item.amount} className="w-full h-10 rounded-md p-3"  onChange={(e) => onItemChange(item.id, 'amount', e.target.value)}/>
+    </div>  
+    )
+})
+export default Workeditem;
