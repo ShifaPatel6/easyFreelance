@@ -1,7 +1,6 @@
 import React from 'react'
 
- const InputCompo = ({ placeholder, value, onChange ,type, className ,label}) => {
-  console.log({value},{placeholder})
+ const InputCompo = ({ placeholder, value, onChange ,type, className ,label,style}) => {
   return (
     <>
     
@@ -14,6 +13,7 @@ import React from 'react'
         value={value}
         onChange={onChange}
         className={className}
+        style={style}
       />
     </div>
     </>
