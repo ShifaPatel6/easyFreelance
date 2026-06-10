@@ -1,40 +1,15 @@
-import React from 'react'
 import { CirclePlus } from 'lucide-react';
 import Workeditem from './Workeditem';
-import{useState, useCallback} from 'react';
+import useInvoiceStore from'../Store/WorkedItemStore'
 
  const WorkedItemCompo = ({showAddbtn = true ,isPreview = true}) => {
-    const[items,setItems] = useState(
-      Array(3).fill(null).map((_, i)=>{
-        return {
-          id: i + 1,
-          description: '',
-          quantity: '',
-          rate: '',
-          amount: ''
-        };
-      })
-    );
-    const handleItemsChange=useCallback((id ,feild,value)=>{
-      setItems(prevItems => prevItems.map(i => i.id ===id ?{...i ,[feild]:value}: i))
-    }, []);
-    const handleAddItem =()=>{
-      setItems(prevItems => [...prevItems,{
-        id: prevItems.length + 1,
-        description: '',
-        quantity: '',
-        rate: '',
-        amount: ''
-      }])
-    }
-
-    const subTotal = items.reduce((total ,items)=>{
-     return total + (Number(items.amount))      
-    },0)
-
-    const gst = Math.floor(subTotal * 0.18)
-    const Total = gst + subTotal;
-
+   
+  const items = useInvoiceStore((state)=>state.items)
+  const updateItem = useInvoiceStore((state)=>state.updateItem)
+  const addtem = useInvoiceStore((state)=>state.addItem)
+  const getSubTotal = useInvoiceStore((state) => state.getSubTotal)
+  const getGst      = useInvoiceStore((state) => state.getGst)
+  const getTotal    = useInvoiceStore((state) => state.getTotal)
     
   return (
     <>
@@ -48,14 +23,13 @@ import{useState, useCallback} from 'react';
   </div>
  <div className={`w-full flex flex-col gap-3 justify-start ${items.length > 4 ? 'overflow-y-scroll h-56' : ''} `}>
    {   items.map((item) => (
-    <Workeditem key={item.id} item={item} onItemChange={handleItemsChange} />
+    <Workeditem key={item.id} item={item} onItemChange={updateItem} />
 
    ))}
- 
    </div>
    {
     showAddbtn && 
-    <div className="flex items-center gap-1  cursor-pointer" onClick={handleAddItem}>
+    <div className="flex items-center gap-1  cursor-pointer" onClick={addtem}>
       <CirclePlus size={16} />
       <span>Add Item</span>
     </div>
@@ -64,11 +38,10 @@ import{useState, useCallback} from 'react';
 
 <div className={isPreview ? "flex justify-between mt-2 items-center": "flex flex-col text-right mt-4"}>  
   
-<div>Subtotal :  ₹{subTotal.toLocaleString('en-IN')}</div>
-<div>GST(18%) : ₹{gst.toLocaleString('en-IN')}</div>
-<div className={isPreview ? "" :"text-lg mt-2"}>{isPreview ? "Total" : "Total Due" } : ₹{Total.toLocaleString('en-IN')}</div>
+<div>Subtotal :  ₹{getSubTotal().toLocaleString('en-IN')}</div>
+<div>GST(18%) : ₹{getGst().toLocaleString('en-IN')}</div>
+<div className={getTotal() ? "" :"text-lg mt-2"}>{isPreview ? "Total" : "Total due" } : ₹{getSubTotal().toLocaleString('en-IN')}</div>
 </div>
-
     </>
   )
 }
