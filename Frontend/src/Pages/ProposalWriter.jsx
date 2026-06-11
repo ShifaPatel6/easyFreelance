@@ -25,6 +25,7 @@ export const ProposalWriter = () => {
         { label: 'UI/UX Design', value: 'ui_ux_design' },
 
     ]
+    const DisableHelper =!clientName || !brief || !experience || !budget || !timeline ||!skills
     return (
         <>
             <OuterContainer>
@@ -37,7 +38,7 @@ export const ProposalWriter = () => {
                     </div>
                 </HeadingSubHeading>
 
-                <div className='h-auto w-11/12 bg-slate-100 border-gray-200 border-2 rounded-2xl mx-auto p-6 font-semibold' style={{ color: colors.textSecondary }}>
+                <div className='h-auto w-11/12  border-gray-200 border-2 rounded-2xl mx-auto p-6 font-semibold' style={{ color: colors.textSecondary }}>
                     <div className='flex flex-col items-center gap-6'>
 
                         {/* Row 1 — Client Name + Project Type */}
@@ -50,7 +51,7 @@ export const ProposalWriter = () => {
                                     onChange={(e) => setClientName(e.target.value)}
                                         
                                     type="text"
-                                    className='w-full p-2 rounded-xl'
+                                    className='w-full p-2 rounded-xl border-gray-300 border-2'
                                 />
                             </div>
                             <div className='flex flex-col gap-2 flex-1 relative'>
@@ -70,7 +71,7 @@ export const ProposalWriter = () => {
                             <textarea
                                 value={brief}
                                 onChange={(e) => setBrief(e.target.value)}
-                                className='w-full h-20 p-4 rounded-2xl bg-white resize-none focus:outline-none'
+                                className='w-full h-20 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
                             />
                         </div>
 
@@ -89,7 +90,7 @@ export const ProposalWriter = () => {
                                     }
                                     }}
                                     type="text"
-                                    className='w-full p-2 rounded-xl'
+                                    className='w-full p-2 rounded-xl border-gray-300 border-2'
                                 />
                                 {error.experience && <span className='text-red-500 text-sm'>{error.experience}</span>}
                             </div>
@@ -108,7 +109,7 @@ export const ProposalWriter = () => {
                                     }}
                                     
                                     type="text"
-                                    className='w-full p-2 rounded-xl'
+                                    className='w-full p-2 rounded-xl border-gray-300 border-2'
                                 />
                                 {error.budget && <span className='text-red-500 text-sm'>{error.budget}</span>}
                             </div>
@@ -127,7 +128,7 @@ export const ProposalWriter = () => {
                                     }}
                                     
                                     type="text"
-                                    className='w-full p-2 rounded-xl'
+                                    className='w-full p-2 rounded-xl border-gray-300 border-2 focus:outline-none'
                                 />
                               
                               
@@ -141,7 +142,7 @@ export const ProposalWriter = () => {
                             <textarea
                                 value={skills}
                                 onChange={(e) => setSkills(e.target.value)}
-                                className='w-full h-12 p-4 rounded-2xl bg-white resize-none focus:outline-none'
+                                className='w-full h-12 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
                             />
                         </div>
 
@@ -149,7 +150,7 @@ export const ProposalWriter = () => {
 
                     {/* Generate Button */}
                     <div className='flex justify-end w-full mt-4'>
-                        <RegularButton className='h-10 text-xl px-6'>
+                        <RegularButton className='h-10 text-xl px-6' disabled={DisableHelper}>
                             Generate Proposal
                         </RegularButton>
                     </div>

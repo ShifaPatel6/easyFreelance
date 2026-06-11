@@ -10,6 +10,7 @@ import BriefAnalyzer from "./Pages/BriefAnalyzer";
 import { History } from "./Pages/History";
 import { ProposalWriter } from "./Pages/ProposalWriter";
 import InvoiceGenerator from "./Pages/InvoiceGenerator";
+import FollowUpWriter from "./Pages/FollowUpWriter";
 
 
   const router = createBrowserRouter(
@@ -28,6 +29,9 @@ import InvoiceGenerator from "./Pages/InvoiceGenerator";
   <Route path='/history' element={<History/>}/>
   <Route path='/proposalWriter' element={<ProposalWriter/>}/>
   <Route path='/invoiceGenerator' element={<InvoiceGenerator/>}/>
+    <Route path='/followUpWriter' element={<FollowUpWriter/>}/>
+
+
    </Route>
   <Route path='*' element={<Login/>} />
   </Route>

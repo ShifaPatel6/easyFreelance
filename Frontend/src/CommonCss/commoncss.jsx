@@ -20,6 +20,9 @@ export const RegularButton = styled.button`
   color:white;
   border-radius:9999px;
  border: 1px solid #e2e8f0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem ;
+
   transition: background-color 0.3s ease;
 
   &:disabled {
