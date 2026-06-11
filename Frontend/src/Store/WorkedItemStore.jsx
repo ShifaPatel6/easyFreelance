@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const useInvoiceStore = create((set,get) => ({
+const useWorkedItemStore = create((set,get) => ({
   items: [
     { id: 1, description: '', quantity: '', rate: '' ,amount:''},
     { id: 2, description: '', quantity: '', rate: '' ,amount:''},
@@ -18,7 +18,8 @@ const useInvoiceStore = create((set,get) => ({
       id: state.items.length + 1,
       description: '',
       quantity: '',
-      rate: ''
+      rate: '',
+      amount:''
     }]
   })),
  
@@ -33,4 +34,4 @@ const useInvoiceStore = create((set,get) => ({
   getTotal: () => get().getSubTotal() + get().getGst()
 }))
 
-export default useInvoiceStore
+export default useWorkedItemStore

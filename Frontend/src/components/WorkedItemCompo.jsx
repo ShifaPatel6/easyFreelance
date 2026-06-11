@@ -1,15 +1,15 @@
 import { CirclePlus } from 'lucide-react';
 import Workeditem from './Workeditem';
-import useInvoiceStore from'../Store/WorkedItemStore'
+import useWorkedItemStore from'../Store/WorkedItemStore'
 
  const WorkedItemCompo = ({showAddbtn = true ,isPreview = true}) => {
    
-  const items = useInvoiceStore((state)=>state.items)
-  const updateItem = useInvoiceStore((state)=>state.updateItem)
-  const addtem = useInvoiceStore((state)=>state.addItem)
-  const getSubTotal = useInvoiceStore((state) => state.getSubTotal)
-  const getGst      = useInvoiceStore((state) => state.getGst)
-  const getTotal    = useInvoiceStore((state) => state.getTotal)
+  const items = useWorkedItemStore((state)=>state.items)
+  const updateItem = useWorkedItemStore((state)=>state.updateItem)
+  const addItem = useWorkedItemStore((state)=>state.addItem)
+  const getSubTotal = useWorkedItemStore((state) => state.getSubTotal)
+  const getGst      = useWorkedItemStore((state) => state.getGst)
+  const getTotal    = useWorkedItemStore((state) => state.getTotal)
     
   return (
     <>
@@ -29,7 +29,7 @@ import useInvoiceStore from'../Store/WorkedItemStore'
    </div>
    {
     showAddbtn && 
-    <div className="flex items-center gap-1  cursor-pointer" onClick={addtem}>
+    <div className="flex items-center gap-1  cursor-pointer" onClick={addItem}>
       <CirclePlus size={16} />
       <span>Add Item</span>
     </div>
