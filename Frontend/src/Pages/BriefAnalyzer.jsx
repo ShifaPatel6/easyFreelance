@@ -27,7 +27,7 @@ import {Link} from 'react-router-dom'
     </div>
   </HeadingSubHeading>
 
-  <div className='h-auto w-11/12 bg-slate-100 border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
+  <div className='h-auto w-11/12  border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
 <div className='flex flex-row items-center gap-5 mb-4'>
 
    Paste Client Message or Brief
@@ -42,7 +42,7 @@ import {Link} from 'react-router-dom'
     <textarea name="Clientmsg" id="Clientmsg"
     value={userInput}
     onChange={(e)=>{setUserInput(e.target.value)}}
-  className='w-full h-64 p-4 rounded-2xl bg-white resize-none focus:outline-none'
+  className='w-full h-64 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
  
 >
     </textarea>

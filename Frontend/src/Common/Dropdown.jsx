@@ -35,7 +35,7 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onClick={() => setIsOpen(!isOpen)}
-                className='w-full p-2 rounded-xl cursor-pointer'
+                className='w-full p-2 rounded-xl cursor-pointer border-gray-300 border-2'
             />
 
             {isOpen && (
