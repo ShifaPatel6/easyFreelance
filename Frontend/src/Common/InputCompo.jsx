@@ -1,12 +1,13 @@
 import React from 'react'
+import { InputTag } from '../CommonCss/commoncss';
 
- const InputCompo = ({ placeholder, value, onChange ,type, className ,label,style}) => {
+ const InputCompo = ({ placeholder, value, onChange ,type, className ,label,style,readOnly}) => {
   return (
     <>
     
     
     <div className='flex flex-col gap-1'>  
-      {label && <label>{label}</label>}
+      {label && <InputTag>{label}</InputTag>}
       <input
         type={type}
         placeholder={placeholder}
@@ -14,6 +15,7 @@ import React from 'react'
         onChange={onChange}
         className={className}
         style={style}
+         readOnly={readOnly} 
       />
     </div>
     </>
