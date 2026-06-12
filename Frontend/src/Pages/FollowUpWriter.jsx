@@ -2,16 +2,40 @@ import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTa
 import { useState } from 'react'
 import InputCompo from '../Common/InputCompo';
 import {Dropdown} from '../Common/Dropdown'
+import { ChevronDown } from 'lucide-react';
+import useInvoicedetailStore from '../Store/UserDetailStore';
+import useWorkedItemStore from '../Store/WorkedItemStore'
+
+
+
+ 
 
  const FollowUpWriter = () => {
   const[userInput , setUserInput] = useState('');
   const[result , setResult] = useState('');
     const [label, setLabel] = useState('');
-  
+    const [tone ,setTone] =useState('')
+    const[selected,setSelected] =useState(false)
+
+     const userDetail =useInvoicedetailStore((state)=>state.userDetail)
+    const clientDetail =useInvoicedetailStore((state)=>state.clientDetail)
+      const getTotal    = useWorkedItemStore((state) => state.getTotal)  
 
   const dropDownop =[{
-    label:'Pending' , value:'pending'
-  }]
+    label:'Pending' , value:'pending',
+   
+  },
+  {
+     label :'Overdue' ,value:'overdue',
+  },
+   {
+     label :'30+Very Overdue' ,value:'very overdue',
+  }
+
+  
+]
+    const DisableHelper =!tone ||!label;
+
   return (
     <>
     <OuterContainer >
@@ -37,40 +61,55 @@ import {Dropdown} from '../Common/Dropdown'
     </RegularButton>
   
    </div>
-     <div className='flex  justify-around'>
-           <InputCompo label="Client name" placeholder="Client name" type="text" value="" className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
-        <InputCompo label="Invoice number" placeholder="Invoice number Company" type="text" value="" className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
-        <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value="" className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
-        <InputCompo label="Due date" placeholder="Due date" type="text" value="" className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
+   <div className='flex flex-col items-center gap-6'>
 
-   
+        <div className='flex gap-4 w-full justify-between'>
+
+           <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" readOnly/>
+
+        <InputCompo label="Invoice number" placeholder="Invoice number " type="text" value="" className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
+        <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value={getTotal()} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" readOnly />
+        <InputCompo label="Due date" placeholder="Due date" type="text" value={clientDetail.dueDate} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" />
   </div>
-  <div className='flex justify-around items-center '>
-    <InputCompo label="Your name" placeholder="Your name" type="text" value="" className=" h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
-    <div>
+  <div className='flex justify-between w-full gap-4 items-center '>
+    <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} className=" h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" />
+    <div className='flex flex-col  w-full relative '>
 
-     <InputTag>Project Type</InputTag>
+     <InputTag>Payment status</InputTag>
     <Dropdown    options={dropDownop}
-                                    placeholder="Select Project Type"
+                                    placeholder="Select payment status"
                                     onChange={setLabel}/>
+                                                                    <ChevronDown className='absolute right-4 top-10' />
+
+</div>
 
     
-    </div>
-    <div className='flex gap-6'>
+<div className='flex flex-col  w-full'>
 
 <InputTag>Tone</InputTag>
+<div className='flex gap-4'>
      <RegularButton 
   className='w-auto h-10 text-sm  '
+  onClick={()=>setTone("polite")}
+        $selected={tone === "polite"}
+
 >
+  
   Polite
 </RegularButton>
  <RegularButton 
   className='w-auto h-10 text-sm '
+    onClick={()=>setTone("firm")}
+        $selected={tone === "firm"}
+
+
   
 >
  Firm
 </RegularButton>
  <RegularButton 
+  onClick={()=>setTone("urgent")}
+    $selected={tone === "urgent"}
   className='w-auto h-10 text-sm '
 
 >
@@ -78,18 +117,24 @@ import {Dropdown} from '../Common/Dropdown'
 </RegularButton>
  <RegularButton 
   className='w-auto h-10 text-sm '
+    onClick={()=>setTone("friendly")}
+        $selected={tone === "friendly"}
+
+
 
 >
  Friendly
 </RegularButton>
     </div>
-    
   </div>
+    </div>
+    
+ </div>
     <RegularButton 
   className='w-full h-10 text-xl mt-20'
-  disabled={!userInput}
+  disabled={DisableHelper}
 >
- Generate
+ Generate Email
 </RegularButton>
   </div>
 

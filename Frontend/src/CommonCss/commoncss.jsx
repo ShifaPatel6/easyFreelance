@@ -30,6 +30,11 @@ export const RegularButton = styled.button`
     cursor: not-allowed;
     background: ${colors.lightBackground};
   }
+   ${({ $selected }) => $selected && `
+    background: white;
+    color: ${colors.background};
+    border: 2px solid ${colors.background};
+  `}
 
    &:hover {
     background: ${colors.lightBackground};
@@ -100,7 +105,8 @@ position: fixed;
     overflow-y: auto; 
   `
   export const InputTag = styled.h1`
-  font-size: 0.80rem;
-     font-weight: 500;
+  font-size: 0.95rem;
+     font-weight: 700;
+     margin-bottom:0.5rem;
   color: ${ colors.textSecondary};
   ` 

@@ -61,7 +61,7 @@ export const ProposalWriter = () => {
                                     placeholder="Select Project Type"
                                     onChange={setLabel}
                                 />
-                                <ChevronDown className='absolute right-4 top-9' />
+                                <ChevronDown className='absolute right-4 top-12' />
                             </div>
                         </div>
 
