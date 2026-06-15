@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading ,OuterContainer,HeadingSubHeading ,CardContainer ,InnerCard} from '../CommonCss/commoncss'
+import { Heading ,OuterContainer,HeadingSubHeading} from '../CommonCss/commoncss'
 import Table from '../components/Table'
 import { useState,useCallback } from 'react';
 import Card from '../components/Card';

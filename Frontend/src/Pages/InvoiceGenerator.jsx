@@ -11,7 +11,7 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
 
     const userDetail =useInvoicedetailStore((state)=>state.userDetail)
     const clientDetail =useInvoicedetailStore((state)=>state.clientDetail)
-    const setClienDetail =useInvoicedetailStore((state)=>state.setClienDetail);
+    const setClientDetail =useInvoicedetailStore((state)=>state.setClientDetail);
     const setUserDetail =useInvoicedetailStore((state)=>state.setUserDetail)
   return (
      <>
@@ -44,11 +44,11 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
         <div className="w-full min-h-fit flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
            >
             Client Details
-            <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e) => setClienDetail('name', e.target.value)}
+            <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e) => setClientDetail('name', e.target.value)}
  />
-            <InputCompo label="Client Company" placeholder="Client Company" type="text" value={clientDetail.company} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClienDetail('company',e.target.value)} />
-            <InputCompo label="Invoice date" type="date" value={clientDetail.invoiceDate} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClienDetail('invoiceDate',e.target.value)} />
-            <InputCompo label="Due date" type="date" value={clientDetail.dueDate} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClienDetail('dueDate',e.target.value)} />
+            <InputCompo label="Client Company" placeholder="Client Company" type="text" value={clientDetail.company} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('company',e.target.value)} />
+            <InputCompo label="Invoice date" type="date" value={clientDetail.invoiceDate} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('invoiceDate',e.target.value)} />
+            <InputCompo label="Due date" type="date" value={clientDetail.dueDate} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('dueDate',e.target.value)} />
         </div>
      {/* Worked Items */}
        <div className="w-full min-h-32 flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 

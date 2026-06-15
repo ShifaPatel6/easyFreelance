@@ -11,6 +11,7 @@ import { History } from "./Pages/History";
 import { ProposalWriter } from "./Pages/ProposalWriter";
 import InvoiceGenerator from "./Pages/InvoiceGenerator";
 import FollowUpWriter from "./Pages/FollowUpWriter";
+import BioWriter from "./Pages/BioWriter"
 
 
   const router = createBrowserRouter(
@@ -30,6 +31,8 @@ import FollowUpWriter from "./Pages/FollowUpWriter";
   <Route path='/proposalWriter' element={<ProposalWriter/>}/>
   <Route path='/invoiceGenerator' element={<InvoiceGenerator/>}/>
     <Route path='/followUpWriter' element={<FollowUpWriter/>}/>
+        <Route path='/bioWriter' element={<BioWriter/>}/>
+
 
 
    </Route>

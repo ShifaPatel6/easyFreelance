@@ -6,20 +6,20 @@ import { ChevronDown } from 'lucide-react';
 import useInvoicedetailStore from '../Store/UserDetailStore';
 import useWorkedItemStore from '../Store/WorkedItemStore'
 
-
-
- 
-
  const FollowUpWriter = () => {
   const[userInput , setUserInput] = useState('');
   const[result , setResult] = useState('');
     const [label, setLabel] = useState('');
-    const [tone ,setTone] =useState('')
+    const [tone ,setTone] =useState('');
+    const [skills, setSkills] = useState('');
+    
     const[selected,setSelected] =useState(false)
 
      const userDetail =useInvoicedetailStore((state)=>state.userDetail)
+     const setUserDetail =useInvoicedetailStore((state)=>state.setUserDetail)
     const clientDetail =useInvoicedetailStore((state)=>state.clientDetail)
       const getTotal    = useWorkedItemStore((state) => state.getTotal)  
+      const setClientDetail = useInvoicedetailStore((state)=>state.setClientDetail)
 
   const dropDownop =[{
     label:'Pending' , value:'pending',
@@ -65,14 +65,13 @@ import useWorkedItemStore from '../Store/WorkedItemStore'
 
         <div className='flex gap-4 w-full justify-between'>
 
-           <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" readOnly/>
-
-        <InputCompo label="Invoice number" placeholder="Invoice number " type="text" value="" className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" />
-        <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value={getTotal()} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" readOnly />
-        <InputCompo label="Due date" placeholder="Due date" type="text" value={clientDetail.dueDate} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" />
+           <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('name',e.target.value)}/>
+        <InputCompo label="Invoice number" placeholder="Invoice number " type="text" value={clientDetail.invoiceNumber} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('invoiceNumber',e.target.value)}/>
+        <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value={clientDetail.invoiceAmount} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('invoiceAmount',e.target.value)}/>
+        <InputCompo label="Due date" placeholder="Due date" type="date" value={clientDetail.dueDate} className="w-52  h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300"  onChange={(e)=>setClientDetail('dueDate',e.target.value)}  />
   </div>
   <div className='flex justify-between w-full gap-4 items-center '>
-    <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} className=" h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" />
+    <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} className=" h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300"onChange={(e)=>setUserDetail('name',e.target.value)} />
     <div className='flex flex-col  w-full relative '>
 
      <InputTag>Payment status</InputTag>

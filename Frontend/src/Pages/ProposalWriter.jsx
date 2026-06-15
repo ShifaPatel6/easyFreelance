@@ -5,17 +5,15 @@ import { Link } from 'react-router-dom'
 import InputCompo from '../Common/InputCompo';
 import { Dropdown } from '../Common/Dropdown';
 import { ChevronDown } from 'lucide-react';
+import useProposalWriterStore from '../Store/ProposalWriterStore'
 
 
 export const ProposalWriter = () => {
     const [label, setLabel] = useState('');
-    const [clientName, setClientName] = useState('');
-    const [brief, setBrief] = useState('');
-    const [experience, setExperience] = useState('');
-    const [budget, setBudget] = useState('');
-    const [timeline, setTimeline] = useState('');
-    const [skills, setSkills] = useState('');
     const [error, setError] = useState({});
+
+    const ProposalInfo = useProposalWriterStore((state)=>state.ProposalInfo)
+    const setProposalInfo =useProposalWriterStore((state)=>state.setProposalInfo)
 
     const optionsarr = [
         { label: 'Other', value: 'other' },
@@ -25,7 +23,7 @@ export const ProposalWriter = () => {
         { label: 'UI/UX Design', value: 'ui_ux_design' },
 
     ]
-    const DisableHelper =!clientName || !brief || !experience || !budget || !timeline ||!skills
+    const DisableHelper =!ProposalInfo.clientName || !ProposalInfo.brief || !ProposalInfo.experience || !ProposalInfo.budget || !ProposalInfo.timeline ||!ProposalInfo.skills
     return (
         <>
             <OuterContainer>
@@ -47,8 +45,8 @@ export const ProposalWriter = () => {
                                 <InputTag>Client Name</InputTag>
                                 <InputCompo
                                     placeholder="Client Name"
-                                    value={clientName}
-                                    onChange={(e) => setClientName(e.target.value)}
+                                    value={ProposalInfo.clientName}
+                                    onChange={(e) => setProposalInfo('clientName',e.target.value)}
                                         
                                     type="text"
                                     className='w-full p-2 rounded-xl border-gray-300 border-2'
@@ -69,8 +67,8 @@ export const ProposalWriter = () => {
                         <div className='flex flex-col gap-2 w-full'>
                             <InputTag>Client requirement / brief</InputTag>
                             <textarea
-                                value={brief}
-                                onChange={(e) => setBrief(e.target.value)}
+                                value={ProposalInfo.brief}
+                                    onChange={(e) => setProposalInfo('clientName',e.target.value)}
                                 className='w-full h-20 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
                             />
                         </div>
@@ -81,14 +79,14 @@ export const ProposalWriter = () => {
                                 <InputTag>Your experience (years)</InputTag>
                                 <InputCompo
                                     placeholder="e.g. 3"
-                                    value={experience}
-                                    onChange={(e) => {setExperience(e.target.value)
+                                    value={ProposalInfo.experience}
+                                    onChange={(e) => {setProposalInfo('experience',e.target.value);
                                     if(isNaN(e.target.value)){
                                             setError({...error, experience:"Please enter valid experience in numbers"})
                                     }else{
                                         setError({...error, experience:""})
-                                    }
                                     }}
+                                }
                                     type="text"
                                     className='w-full p-2 rounded-xl border-gray-300 border-2'
                                 />
@@ -98,9 +96,9 @@ export const ProposalWriter = () => {
                                 <InputTag>Expected budget (Rs.)</InputTag>
                                 <InputCompo
                                     placeholder="e.g. 15000"
-                                    value={budget}
+                                    value={ProposalInfo.budget}
                                     onChange={(e) => {
-                                        setBudget(e.target.value);
+                                        setProposalInfo('budget',e.target.value);
                                         if(isNaN(e.target.value)){
                                             setError({...error,budget:"Please enter valid budget in numbers"});
                                         }else{
@@ -117,9 +115,9 @@ export const ProposalWriter = () => {
                                 <InputTag>Timeline (weeks)</InputTag>
                                  <InputCompo
                                     placeholder="e.g. 15000"
-                                    value={timeline}
+                                    value={ProposalInfo.timeline}
                                     onChange={(e) => {
-                                        setTimeline(e.target.value);
+                                        setProposalInfo('timeline',e.target.value);
                                         if(isNaN(e.target.value)){
                                             setError({...error,timeline:"Please enter valid timeline in numbers"});
                                         }else{
@@ -130,8 +128,7 @@ export const ProposalWriter = () => {
                                     type="text"
                                     className='w-full p-2 rounded-xl border-gray-300 border-2 focus:outline-none'
                                 />
-                              
-                              
+            
                                 {error.timeline && <span className='text-red-500 text-sm'>{error.timeline}</span>}
                             </div>
                         </div>
@@ -140,8 +137,8 @@ export const ProposalWriter = () => {
                         <div className='flex flex-col gap-2 w-full'>
                             <InputTag>Your skills (comma separated)</InputTag>
                             <textarea
-                                value={skills}
-                                onChange={(e) => setSkills(e.target.value)}
+                                value={ProposalInfo.skills}
+                                    onChange={(e) => setProposalInfo('skills',e.target.value)}
                                 className='w-full h-12 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
                             />
                         </div>

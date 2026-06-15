@@ -30,7 +30,7 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
         <div className='relative'>
             <input
                 type="text"
-                    ref={inputRef}
+                ref={inputRef}
                 placeholder={isOther ? "Please specify" : placeholder}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
@@ -43,7 +43,6 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
                          <>
                         <div
                             key={option.value}
-                            
                             onClick={() => handleSelectInput(option)}
                             className='p-2 hover:bg-gray-200 cursor-pointer'
                         >
