@@ -24,7 +24,7 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
  
  </div>
      <div>
-      <h1> Fill in project details — AI generates a professional invoice instantly</h1> 
+      <h1> Fill in project details - and get your professional invoice</h1> 
      </div>
    </HeadingSubHeading>
  

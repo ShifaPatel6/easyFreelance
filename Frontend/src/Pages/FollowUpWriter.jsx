@@ -5,15 +5,19 @@ import {Dropdown} from '../Common/Dropdown'
 import { ChevronDown } from 'lucide-react';
 import useInvoicedetailStore from '../Store/UserDetailStore';
 import useWorkedItemStore from '../Store/WorkedItemStore'
+  import { CircleArrowLeft } from 'lucide-react';
+  import TabHooks from '../Hooks/TabHooks';
+    import ResultCompo from '../components/ResultCompo';
+
+
 
  const FollowUpWriter = () => {
-  const[userInput , setUserInput] = useState('');
   const[result , setResult] = useState('');
     const [label, setLabel] = useState('');
     const [tone ,setTone] =useState('');
-    const [skills, setSkills] = useState('');
     
-    const[selected,setSelected] =useState(false)
+        const { activeTab,  goToResult, goToForm } = TabHooks()
+
 
      const userDetail =useInvoicedetailStore((state)=>state.userDetail)
      const setUserDetail =useInvoicedetailStore((state)=>state.setUserDetail)
@@ -34,7 +38,7 @@ import useWorkedItemStore from '../Store/WorkedItemStore'
 
   
 ]
-    const DisableHelper =!tone ||!label;
+    const DisableHelper =!tone ||!label|| !clientDetail.amount;
 
   return (
     <>
@@ -50,15 +54,27 @@ import useWorkedItemStore from '../Store/WorkedItemStore'
      <h1> Add invoice details - AI writes perfect payment reminder email for you</h1> 
     </div>
   </HeadingSubHeading>
+                      <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
+
 
   <div className='h-auto w-11/12  border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
+{activeTab === "result"?
+
+<div>
+        <ResultCompo result={result} onBack={goToForm} />
+      </div>
+      :
+
+      <>
+      
 <div className='flex flex-row items-center gap-5 mb-4'>
 
         <h1 className='uppercase'> Invoice details</h1> 
-    <RegularButton className='h-8 w-24'
-  disabled={!result}>
-    Result
-    </RegularButton>
+      <RegularButton className='h-8 w-24'
+    disabled={!result}
+    onClick={goToResult}>
+      Result
+      </RegularButton>
   
    </div>
    <div className='flex flex-col items-center gap-6'>
@@ -135,6 +151,11 @@ import useWorkedItemStore from '../Store/WorkedItemStore'
 >
  Generate Email
 </RegularButton>
+      
+      </>
+}
+
+
   </div>
 
 </OuterContainer>

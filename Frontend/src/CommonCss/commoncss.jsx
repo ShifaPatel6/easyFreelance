@@ -84,7 +84,7 @@ export const RegularButton = styled.button`
   `
 
   export const CardContainer = styled.div`
-  background: ${colors.primaryLight};
+  // background: ${colors.primaryLight};
   display: flex;
   flex-direction: column;
   padding: 1.5rem;

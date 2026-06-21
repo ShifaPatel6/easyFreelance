@@ -3,10 +3,17 @@ import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading} from '
 import { useState } from 'react';
 import { History } from 'lucide-react';
 import {Link} from 'react-router-dom'
+  import { CircleArrowLeft } from 'lucide-react';
+  import TabHooks from '../Hooks/TabHooks';
+  import ResultCompo from '../components/ResultCompo';
+
+
 
  const BriefAnalyzer = () => {
   const[userInput , setUserInput] = useState('');
   const[result , setResult] = useState('');
+      const { activeTab,  goToResult, goToForm } = TabHooks()
+
   return (
     <>
     <OuterContainer >
@@ -26,14 +33,24 @@ import {Link} from 'react-router-dom'
      <h1> Paste client message → AI clearly explains what they actually want</h1> 
     </div>
   </HeadingSubHeading>
+                      <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
   <div className='h-auto w-11/12  border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
+{activeTab === "result" ? 
+<div>
+        <ResultCompo result={result} onBack={goToForm} />
+      </div>
+      :
+
+<>
+
 <div className='flex flex-row items-center gap-5 mb-4'>
 
    Paste Client Message or Brief
    
     <RegularButton className='h-8 w-24'
-  disabled={!result}>
+  disabled={!result} 
+  onClick={goToResult}>
     Result
     </RegularButton>
   
@@ -55,6 +72,12 @@ import {Link} from 'react-router-dom'
 </RegularButton>
     </div>
   </div>
+</>
+
+
+}
+
+
   </div>
 
 </OuterContainer>

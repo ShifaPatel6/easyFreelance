@@ -6,11 +6,21 @@ import InputCompo from '../Common/InputCompo';
 import { Dropdown } from '../Common/Dropdown';
 import { ChevronDown } from 'lucide-react';
 import useProposalWriterStore from '../Store/ProposalWriterStore'
+import { Loader } from '../components/Loader';
+  import { CircleArrowLeft } from 'lucide-react';
+  import TabHooks from '../Hooks/TabHooks';
+  import ResultCompo from '../components/ResultCompo';
+
+
 
 
 export const ProposalWriter = () => {
     const [label, setLabel] = useState('');
     const [error, setError] = useState({});
+         const[result,setResult]=useState('shfa in porpsla');
+             const { activeTab,  goToResult, goToForm } = TabHooks()
+
+
 
     const ProposalInfo = useProposalWriterStore((state)=>state.ProposalInfo)
     const setProposalInfo =useProposalWriterStore((state)=>state.setProposalInfo)
@@ -35,8 +45,29 @@ export const ProposalWriter = () => {
                         <h1>Add project details → AI writes a winning proposal for you along with pricing</h1>
                     </div>
                 </HeadingSubHeading>
+                      <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
                 <div className='h-auto w-11/12  border-gray-200 border-2 rounded-2xl mx-auto p-6 font-semibold' style={{ color: colors.textSecondary }}>
+                  
+                  {activeTab ==="result" ?
+                  
+                <div>
+        <ResultCompo result={result} onBack={goToForm} />
+      </div> :
+
+      <>
+      
+                    <div className='flex flex-row items-center gap-5 mb-4'>
+
+        <h1 className='uppercase'> Project details</h1> 
+     <RegularButton className='h-8 w-24'
+     disabled={!result}
+     onClick={goToResult}
+  >
+     Result
+     </RegularButton>
+  
+   </div>
                     <div className='flex flex-col items-center gap-6'>
 
                         {/* Row 1 — Client Name + Project Type */}
@@ -151,8 +182,11 @@ export const ProposalWriter = () => {
                             Generate Proposal
                         </RegularButton>
                     </div>
+      </>
+                }
+                  
                 </div>
-
+                <Loader variant='skeleton' />
             </OuterContainer>
         </>
     )
