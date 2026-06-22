@@ -1,7 +1,5 @@
-import React from 'react'
 import { colors, RegularButton, Heading, OuterContainer, HeadingSubHeading, InputTag, StyledTextArea } from '../CommonCss/commoncss';
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
 import InputCompo from '../Common/InputCompo';
 import { Dropdown } from '../Common/Dropdown';
 import { ChevronDown } from 'lucide-react';
@@ -10,6 +8,8 @@ import { Loader } from '../components/Loader';
   import { CircleArrowLeft } from 'lucide-react';
   import TabHooks from '../Hooks/TabHooks';
   import ResultCompo from '../components/ResultCompo';
+    import useLoading from '../Hooks/LoadingHook';
+
 
 
 
@@ -17,8 +17,10 @@ import { Loader } from '../components/Loader';
 export const ProposalWriter = () => {
     const [label, setLabel] = useState('');
     const [error, setError] = useState({});
-         const[result,setResult]=useState('shfa in porpsla');
+         const[result,setResult]=useState('');
              const { activeTab,  goToResult, goToForm } = TabHooks()
+             const { isLoading, startLoading, stopLoading } = useLoading()
+
 
 
 
@@ -56,6 +58,16 @@ export const ProposalWriter = () => {
       </div> :
 
       <>
+
+      <div  className= 'relative'>
+            {isLoading && (
+        <div className='absolute z-10 flex inset-0 justify-center items-center py-4'>
+          <Loader variant="dot" />  
+        </div>
+      )}
+
+                  <div className={isLoading ? 'opacity-20 pointer-events-none' : ''}>
+
       
                     <div className='flex flex-row items-center gap-5 mb-4'>
 
@@ -99,7 +111,7 @@ export const ProposalWriter = () => {
                             <InputTag>Client requirement / brief</InputTag>
                             <StyledTextArea
                                 value={ProposalInfo.brief}
-                                    onChange={(e) => setProposalInfo('clientName',e.target.value)}
+                                    onChange={(e) => setProposalInfo('brief',e.target.value)}
                                 className='h-20'
                             />
                         </div>
@@ -178,15 +190,16 @@ export const ProposalWriter = () => {
 
                     {/* Generate Button */}
                     <div className='flex justify-end w-full mt-4'>
-                        <RegularButton className='h-10 text-xl px-6' disabled={DisableHelper}>
+                        <RegularButton className='h-10 text-xl px-6' disabled={DisableHelper} >
                             Generate Proposal
                         </RegularButton>
                     </div>
+                       </div>
+                     </div>
       </>
                 }
                   
                 </div>
-                <Loader variant='skeleton' />
             </OuterContainer>
         </>
     )

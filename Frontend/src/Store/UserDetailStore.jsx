@@ -17,7 +17,8 @@ const useInvoicedetailStore =create((set)=>({
         invoiceDate:'',
         dueDate:'',
         invoiceNumber:'',
-        invoiceAmount:''
+        invoiceAmount:'',
+     
 
     },
     //setter

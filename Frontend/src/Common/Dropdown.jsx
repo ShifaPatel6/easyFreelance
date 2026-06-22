@@ -40,7 +40,7 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
             />
 
             {isOpen && (
-    <div className='absolute top-full  w-full bg-white border rounded-md mt-1 z-50 max-h-60 overflow-y-auto'>                    {options.map((option) => (
+    <div className='absolute top-full   bg-white border rounded-md mt-1 z-50 max-h-60 overflow-y-auto'>                    {options.map((option) => (
                          <>
                         <div
                             key={option.value}

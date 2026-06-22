@@ -1,11 +1,12 @@
-import React from 'react'
-import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading} from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading, StyledTextArea} from '../CommonCss/commoncss';
 import { useState } from 'react';
 import { History } from 'lucide-react';
 import {Link} from 'react-router-dom'
   import { CircleArrowLeft } from 'lucide-react';
   import TabHooks from '../Hooks/TabHooks';
   import ResultCompo from '../components/ResultCompo';
+  import useLoading from '../Hooks/LoadingHook';
+  import { Loader } from '../components/Loader';
 
 
 
@@ -13,6 +14,8 @@ import {Link} from 'react-router-dom'
   const[userInput , setUserInput] = useState('');
   const[result , setResult] = useState('');
   const { activeTab,  goToResult, goToForm } = TabHooks()
+  const { isLoading, startLoading, stopLoading } = useLoading()
+  
 
   return (
     <>
@@ -55,7 +58,16 @@ import {Link} from 'react-router-dom'
     </RegularButton>
   
    </div>
-     <div >
+    
+      <div  className= 'relative'>
+                  {isLoading && (
+              <div className='absolute z-10 flex inset-0 justify-center items-center py-4'>
+                <Loader variant="dot" />  
+              </div>
+            )}
+
+                  <div className={isLoading ? 'opacity-20 pointer-events-none' : ''}>
+
     <textarea name="Clientmsg" id="Clientmsg"
     value={userInput}
     onChange={(e)=>{setUserInput(e.target.value)}}
@@ -63,15 +75,17 @@ import {Link} from 'react-router-dom'
  
 >
     </textarea>
-    <div className='flex justify-center'>
+    <div className='flex justify-center mt-4'>
     <RegularButton 
   className='w-full h-10 text-xl'
   disabled={!userInput}
+
 >
   Analyze Brief
 </RegularButton>
     </div>
   </div>
+   </div>
 </>
 
 

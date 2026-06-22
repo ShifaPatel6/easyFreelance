@@ -6,16 +6,17 @@ import ResultCompo from '../components/ResultCompo';
 import TabHooks from '../Hooks/TabHooks';
   import { CircleArrowLeft } from 'lucide-react';
   import { Loader } from '../components/Loader';
+  import useLoading from '../Hooks/LoadingHook';
 
 
  const BioWriter = () => {
     const { activeTab,  goToResult, goToForm } = TabHooks()
+const { isLoading, startLoading, stopLoading } = useLoading()
 
      const [label, setLabel] = useState('');
      const[result,setResult]=useState('')
         const [tone ,setTone] =useState('');
         const[jobTitle ,setJobTitle] =useState('');
-        const [isLoading, setIsLoading] = useState(false)
 
         const userDetail =useInvoicedetailStore((state)=>state.userDetail)
         const setUserDetail =useInvoicedetailStore((state)=>state.setUserDetail)
@@ -51,7 +52,7 @@ return (
           <Loader variant="dot" />  
         </div>
       )}
-      <div className={isLoading ? 'opacity-20 pointer-events-none' : 'relative'}>
+      <div className={isLoading ? 'opacity-20 pointer-events-none' : ''}>
 
      
         <div className= 'flex flex-row items-center gap-5 mb-4'>
@@ -95,12 +96,12 @@ return (
           className='w-full h-10 text-xl mt-6'
           disabled={DisableHelper}
         onClick={() => {
-          setIsLoading(true)
+          startLoading()
           
           // API call simulate kar rahe hain — baad mein real API lagana
           setTimeout(() => {
             setResult("I am a passionate Frontend Developer...")
-            setIsLoading(false)
+            stopLoading()
             goToResult()
           }, 5000)  // 2 sec fake loading
         }}

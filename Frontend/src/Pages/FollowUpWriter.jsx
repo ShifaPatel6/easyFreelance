@@ -8,6 +8,8 @@ import useWorkedItemStore from '../Store/WorkedItemStore'
 import { CircleArrowLeft } from 'lucide-react';
 import TabHooks from '../Hooks/TabHooks';
 import ResultCompo from '../components/ResultCompo';
+import useLoading from '../Hooks/LoadingHook';
+import { Loader } from '../components/Loader';
 
 
 
@@ -17,6 +19,9 @@ import ResultCompo from '../components/ResultCompo';
     const [tone ,setTone] =useState('');
     
         const { activeTab,  goToResult, goToForm } = TabHooks()
+        const { isLoading, startLoading, stopLoading } = useLoading()
+
+  const items = useWorkedItemStore((state)=>state.items)
 
 
      const userDetail =useInvoicedetailStore((state)=>state.userDetail)
@@ -38,7 +43,10 @@ import ResultCompo from '../components/ResultCompo';
 
   
 ]
-    const DisableHelper =!tone ||!label|| !clientDetail.amount;
+    const DisableHelper =!tone ||!label|| !clientDetail.invoiceAmount;
+
+    console.log(tone , label , clientDetail.invoiceAmount , "here is proposal writer");
+    
 
   return (
     <>
@@ -66,6 +74,14 @@ import ResultCompo from '../components/ResultCompo';
       :
 
       <>
+      <div  className= 'relative'>
+                        {isLoading && (
+                    <div className='absolute z-10 flex inset-0 justify-center items-center py-4'>
+                      <Loader variant="dot" />  
+                    </div>
+                  )}
+            <div className={isLoading ? 'opacity-20 pointer-events-none' : ''}>
+
       
 <div className='flex flex-row items-center gap-5 mb-4'>
 
@@ -81,14 +97,18 @@ import ResultCompo from '../components/ResultCompo';
 
         <div className='flex gap-4 w-full justify-between'>
 
-           <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('name',e.target.value)}/>
-        <InputCompo label="Invoice number" placeholder="Invoice number " type="text" value={clientDetail.invoiceNumber} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('invoiceNumber',e.target.value)}/>
-        <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value={clientDetail.invoiceAmount} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('invoiceAmount',e.target.value)}/>
-        <InputCompo label="Due date" placeholder="Due date" type="date" value={clientDetail.dueDate} className="w-52  h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300"  onChange={(e)=>setClientDetail('dueDate',e.target.value)}  />
+           <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name}  onChange={(e)=>setClientDetail('name',e.target.value)}/>
+        <InputCompo label="Invoice number" placeholder="Invoice number " type="text" value={clientDetail.invoiceNumber} onChange={(e)=>setClientDetail('invoiceNumber',e.target.value)}/>
+        <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value={clientDetail.invoiceAmount} onChange={(e)=>setClientDetail('invoiceAmount',e.target.value)}/>
+        <InputCompo label="Due date" placeholder="Due date" type="date" value={clientDetail.dueDate}   onChange={(e)=>setClientDetail('dueDate',e.target.value)}  />
   </div>
   <div className='flex justify-between w-full gap-4 items-center '>
-    <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} className=" h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300"onChange={(e)=>setUserDetail('name',e.target.value)} />
-    <div className='flex flex-col  w-full relative '>
+    <div className='w-full'>
+
+    <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} onChange={(e)=>setUserDetail('name',e.target.value)}/>
+
+    </div>
+    <div className='flex flex-col w-full relative '>
 
      <InputTag>Payment status</InputTag>
     <Dropdown    options={dropDownop}
@@ -148,10 +168,12 @@ import ResultCompo from '../components/ResultCompo';
     <RegularButton 
   className='w-full h-10 text-xl mt-20'
   disabled={DisableHelper}
+ 
 >
  Generate Email
 </RegularButton>
-      
+      </div>
+       </div>
       </>
 }
 
