@@ -1,5 +1,5 @@
 import React from 'react'
-import { InputTag } from '../CommonCss/commoncss';
+import { InputTag ,StyledInput} from '../CommonCss/commoncss';
 
  const InputCompo = ({ placeholder, value, onChange ,type, className ,label,style,readOnly}) => {
   return (
@@ -8,14 +8,15 @@ import { InputTag } from '../CommonCss/commoncss';
     
     <div className='flex flex-col gap-1'>  
       {label && <InputTag>{label}</InputTag>}
-      <input
+      <StyledInput
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={className}
         style={style}
-         readOnly={readOnly} 
+        readOnly={readOnly} 
+        className={className}
+
       />
     </div>
     </>

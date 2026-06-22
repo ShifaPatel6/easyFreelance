@@ -1,12 +1,14 @@
 import React from 'react'
 import '../css/Loader.css'
+import {colors} from "../CommonCss/commoncss"
 
-export const Loader = ({variant ='dot',size='md' ,text}) => {
+export const Loader = ({variant ='dot'}) => {
  
     if (variant === "dot"){
         return (
-            <>  <div className="dots">
-        <span /><span /><span />
+            <>  <div className='dots p-3 rounded-full' style={{background:colors.background ,color:'white'}}>
+              <span/> <span/><span/>
+
       </div>
             </>
         )

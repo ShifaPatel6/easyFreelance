@@ -15,6 +15,33 @@ export const colors = {
   lightBackground:'#9a93e3 ',
 }
 
+export const StyledInput = styled.input`
+  width: 100%;
+  height: 40px;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border: 2px solid #d1d5db;
+  
+  &:focus {
+    outline: none;
+    border-color: ${colors.primary};
+  }
+`
+export const StyledTextArea = styled.input`
+  width: 100%;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  border: 2px solid #d1d5db;
+  
+  &:focus {
+    outline: none;
+    border-color: ${colors.primary};
+  }
+`
+
+
 export const RegularButton = styled.button`
   background: ${colors.background};
   color:white;

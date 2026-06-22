@@ -1,19 +1,22 @@
-import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTag} from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTag, StyledTextArea} from '../CommonCss/commoncss';
 import InputCompo from '../Common/InputCompo';
 import { useState,useRef } from 'react';
 import useInvoicedetailStore from '../Store/UserDetailStore';
 import ResultCompo from '../components/ResultCompo';
 import TabHooks from '../Hooks/TabHooks';
   import { CircleArrowLeft } from 'lucide-react';
+  import { Loader } from '../components/Loader';
 
 
  const BioWriter = () => {
     const { activeTab,  goToResult, goToForm } = TabHooks()
 
      const [label, setLabel] = useState('');
-     const[result,setResult]=useState('shiFA is testin0g sioMETH-ng')
+     const[result,setResult]=useState('')
         const [tone ,setTone] =useState('');
         const[jobTitle ,setJobTitle] =useState('');
+        const [isLoading, setIsLoading] = useState(false)
+
         const userDetail =useInvoicedetailStore((state)=>state.userDetail)
         const setUserDetail =useInvoicedetailStore((state)=>state.setUserDetail)
 
@@ -41,8 +44,17 @@ return (
         <ResultCompo result={result} onBack={goToForm} />
       </div>
     :
-      <div >
-        <div className='flex flex-row items-center gap-5 mb-4 '>
+    
+      <div  className= 'relative'>
+            {isLoading && (
+        <div className='absolute z-10 flex inset-0 justify-center items-center py-4'>
+          <Loader variant="dot" />  
+        </div>
+      )}
+      <div className={isLoading ? 'opacity-20 pointer-events-none' : 'relative'}>
+
+     
+        <div className= 'flex flex-row items-center gap-5 mb-4'>
           <h1 className='uppercase'>Your details</h1> 
           <RegularButton className='h-8 w-24' disabled={!result} onClick={() => {  goToResult() }}>
             Result
@@ -51,20 +63,20 @@ return (
 
         <div className='flex flex-col items-center gap-6'>
           <div className='flex gap-4 w-full '>
-            <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setUserDetail('name',e.target.value)}/>
-            <InputCompo label="Job title" placeholder="Job title" type="text" value={jobTitle} className="w-full h-10 rounded-xl p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setJobTitle(e.target.value)}/>
+            <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name}  onChange={(e)=>setUserDetail('name',e.target.value)}/>
+            <InputCompo label="Job title" placeholder="Job title" type="text" value={jobTitle}  onChange={(e)=>setJobTitle(e.target.value)}/>
           </div>
 
           <div className='w-full'>
-            <InputCompo label="Skills (comma separated)" placeholder="Your skills" type="text" value={userDetail.skills} className="h-18 rounded-xl p-3 shadow-sm border-2 border-gray-300 w-full" onChange={(e)=>setUserDetail('skills',e.target.value)} />
+            <InputCompo label="Skills (comma separated)" placeholder="Your skills" type="text" value={userDetail.skills}  onChange={(e)=>setUserDetail('skills',e.target.value)} />
           </div>
 
           <div className='flex flex-col gap-2 w-full'>
             <InputTag>Exp & Achievements</InputTag>
-            <textarea
+            <StyledTextArea
               value={userDetail.exp}
               onChange={(e) => setUserDetail('exp',e.target.value)}
-              className='w-full h-20 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
+          className={`w-full h-20 rounded-xl p-3 shadow-sm border-2 border-gray-300 focus:outline-none focus:border-purple-500`}
             />
           </div>
 
@@ -82,11 +94,21 @@ return (
         <RegularButton 
           className='w-full h-10 text-xl mt-6'
           disabled={DisableHelper}
-        
+        onClick={() => {
+          setIsLoading(true)
+          
+          // API call simulate kar rahe hain — baad mein real API lagana
+          setTimeout(() => {
+            setResult("I am a passionate Frontend Developer...")
+            setIsLoading(false)
+            goToResult()
+          }, 5000)  // 2 sec fake loading
+        }}
         >
           Generate Bio
         </RegularButton>
       </div>
+       </div>
     }
   </div>
 

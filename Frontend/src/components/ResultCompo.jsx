@@ -3,12 +3,15 @@ import { useEffect, useRef } from 'react'
 import {Loader} from "../components/Loader"
   import { CircleArrowLeft } from 'lucide-react';
 
+
 const ResultCompo = ({ result, isLoading ,onBack}) => {
+
   const resultRef = useRef(null)
 
 
   useEffect(() => {
     if (result) {
+      
       setTimeout(() => {
         resultRef.current?.scrollIntoView({ 
           behavior: 'smooth', 

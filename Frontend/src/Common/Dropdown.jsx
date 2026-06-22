@@ -1,5 +1,6 @@
 import React from 'react'
 import{ useState ,useRef} from 'react';
+import { StyledInput } from '../CommonCss/commoncss';
 
 export const Dropdown = ({options=[], onChange ,placeholder}) => {
     const [inputValue, setInputValue] = React.useState('');
@@ -28,14 +29,14 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
     <>
         
         <div className='relative'>
-            <input
+            <StyledInput
                 type="text"
                 ref={inputRef}
                 placeholder={isOther ? "Please specify" : placeholder}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onClick={() => setIsOpen(!isOpen)}
-                className='w-full p-2 rounded-xl cursor-pointer border-gray-300 border-2'
+                className=' cursor-pointer '
             />
 
             {isOpen && (

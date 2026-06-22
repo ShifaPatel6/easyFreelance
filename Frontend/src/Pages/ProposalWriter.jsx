@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors, RegularButton, Heading, OuterContainer, HeadingSubHeading, InputTag } from '../CommonCss/commoncss';
+import { colors, RegularButton, Heading, OuterContainer, HeadingSubHeading, InputTag, StyledTextArea } from '../CommonCss/commoncss';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import InputCompo from '../Common/InputCompo';
@@ -97,10 +97,10 @@ export const ProposalWriter = () => {
                         {/* Row 2 — Client Requirement */}
                         <div className='flex flex-col gap-2 w-full'>
                             <InputTag>Client requirement / brief</InputTag>
-                            <textarea
+                            <StyledTextArea
                                 value={ProposalInfo.brief}
                                     onChange={(e) => setProposalInfo('clientName',e.target.value)}
-                                className='w-full h-20 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
+                                className='h-20'
                             />
                         </div>
 
@@ -167,10 +167,10 @@ export const ProposalWriter = () => {
                         {/* Row 4 — Skills */}
                         <div className='flex flex-col gap-2 w-full'>
                             <InputTag>Your skills (comma separated)</InputTag>
-                            <textarea
+                            <StyledTextArea
                                 value={ProposalInfo.skills}
                                     onChange={(e) => setProposalInfo('skills',e.target.value)}
-                                className='w-full h-12 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
+                                className=' h-12 '
                             />
                         </div>
 

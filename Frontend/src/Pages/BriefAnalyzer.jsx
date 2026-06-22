@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom'
  const BriefAnalyzer = () => {
   const[userInput , setUserInput] = useState('');
   const[result , setResult] = useState('');
-      const { activeTab,  goToResult, goToForm } = TabHooks()
+  const { activeTab,  goToResult, goToForm } = TabHooks()
 
   return (
     <>
