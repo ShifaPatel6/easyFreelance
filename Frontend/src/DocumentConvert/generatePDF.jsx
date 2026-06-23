@@ -7,7 +7,9 @@ const generatePDF = async () => {
   const canvas = await html2canvas(element, {
     scale: 2,              // ← better quality
     useCORS: true,
-    backgroundColor: '#ffffff'  // ← white background
+    backgroundColor: '#ffffff',// ← white background
+    width: 700 ,
+    windowWidth: 1000 
   })
 
   const imgData = canvas.toDataURL('image/png')

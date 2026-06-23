@@ -49,7 +49,7 @@ export const ProposalWriter = () => {
                 </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
-                <div className='h-auto w-11/12  border-gray-200 border-2 rounded-2xl mx-auto p-6 font-semibold' style={{ color: colors.textSecondary }}>
+                <div className='h-auto md:w-full w-80 border-gray-200 border-2 rounded-2xl mx-auto p-6 font-semibold' style={{ color: colors.textSecondary }}>
                   
                   {activeTab ==="result" ?
                   
@@ -83,7 +83,7 @@ export const ProposalWriter = () => {
                     <div className='flex flex-col items-center gap-6'>
 
                         {/* Row 1 — Client Name + Project Type */}
-                        <div className='flex gap-4 w-full'>
+                        <div className='flex flex-col lg:flex-row gap-4 w-full'>
                             <div className='flex flex-col gap-2 flex-1'>
                                 <InputTag>Client Name</InputTag>
                                 <InputCompo
@@ -117,7 +117,7 @@ export const ProposalWriter = () => {
                         </div>
 
                         {/* Row 3 — Experience + Budget + Timeline */}
-                        <div className='flex gap-4 w-full'>
+                        <div className='flex gap-4 flex-col lg:flex-row w-full'>
                             <div className='flex flex-col gap-2 flex-1'>
                                 <InputTag>Your experience (years)</InputTag>
                                 <InputCompo
@@ -189,8 +189,8 @@ export const ProposalWriter = () => {
                     </div>
 
                     {/* Generate Button */}
-                    <div className='flex justify-end w-full mt-4'>
-                        <RegularButton className='h-10 text-xl px-6' disabled={DisableHelper} >
+                    <div className='flex justify-center md:justify-end w-full mt-4'>
+                        <RegularButton className='h-auto lg:h-10  text-xl px-6' disabled={DisableHelper} >
                             Generate Proposal
                         </RegularButton>
                     </div>

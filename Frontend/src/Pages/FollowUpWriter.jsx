@@ -65,7 +65,7 @@ import { Loader } from '../components/Loader';
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
 
-  <div className='h-auto w-11/12  border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
+  <div className='h-auto md:w-full    border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
 {activeTab === "result"?
 
 <div>
@@ -93,16 +93,16 @@ import { Loader } from '../components/Loader';
       </RegularButton>
   
    </div>
-   <div className='flex flex-col items-center gap-6'>
+   <div className='flex flex-col items-center  gap-6'>
 
-        <div className='flex gap-4 w-full justify-between'>
+        <div className='flex gap-4 w-full justify-between flex-col lg:flex-row'>
 
            <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name}  onChange={(e)=>setClientDetail('name',e.target.value)}/>
         <InputCompo label="Invoice number" placeholder="Invoice number " type="text" value={clientDetail.invoiceNumber} onChange={(e)=>setClientDetail('invoiceNumber',e.target.value)}/>
         <InputCompo label="Invoice amount" placeholder="Invoice amount" type="text" value={clientDetail.invoiceAmount} onChange={(e)=>setClientDetail('invoiceAmount',e.target.value)}/>
         <InputCompo label="Due date" placeholder="Due date" type="date" value={clientDetail.dueDate}   onChange={(e)=>setClientDetail('dueDate',e.target.value)}  />
   </div>
-  <div className='flex justify-between w-full gap-4 items-center '>
+  <div className='flex justify-between w-full gap-4 items-center flex-col lg:flex-row'>
     <div className='w-full'>
 
     <InputCompo label="Your name" placeholder="Your name" type="text" value={userDetail.name} onChange={(e)=>setUserDetail('name',e.target.value)}/>
@@ -119,10 +119,10 @@ import { Loader } from '../components/Loader';
 </div>
 
     
-<div className='flex flex-col  w-full'>
+<div className='flex flex-col w-full'>
 
 <InputTag>Tone</InputTag>
-<div className='flex gap-4'>
+<div className='flex gap-4 w-full flex-col md:flex-row'>
      <RegularButton 
   className='w-auto h-10 text-sm  '
   onClick={()=>setTone("polite")}
@@ -165,8 +165,10 @@ import { Loader } from '../components/Loader';
     </div>
     
  </div>
+     <div className='flex justify-center md:justify-end mt-4'>
+
     <RegularButton 
-  className='w-full h-10 text-xl mt-20'
+  className='w-auto h-auto md:h-10 text-xl '
   disabled={DisableHelper}
  
 >
@@ -174,6 +176,7 @@ import { Loader } from '../components/Loader';
 </RegularButton>
       </div>
        </div>
+        </div>
       </>
 }
 

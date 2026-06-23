@@ -104,16 +104,15 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
       </div>
 
       <div className='flex gap-4'>
-        <RegularButton className='h-10 px-6 w-40 'onClick={InvoicePdf}  disabled={!userDetail.name} >
+        <RegularButton className='h-auto lg:h-10 px-6 w-auto 'onClick={InvoicePdf}  disabled={!userDetail.name} >
           Download Pdf
         </RegularButton>
-        <div className=''>
 
-        <RegularButton className='h-10 px-6 w-auto' onClick={showToast} disabled={!userDetail.name}>
+        <RegularButton className='h-auto lg:h-10 px-6 w-auto' onClick={showToast} disabled={!userDetail.name}>
           Copy invoice text
         </RegularButton>
         <CopyToast show={showCopy}/>
-        </div>
+    
       </div>
     </>
   )

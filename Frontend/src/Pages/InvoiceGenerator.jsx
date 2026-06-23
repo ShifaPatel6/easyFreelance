@@ -28,12 +28,12 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
      </div>
    </HeadingSubHeading>
  
-<div className='h-auto w-full flex flex-row gap-4'>
+<div className='h-auto w-full flex flex-col lg:flex-row gap-4 '>
 
     {/* Left Column — 3 cards */}
-    <div className='flex flex-col gap-4 w-1/2'>
+    <div className='flex flex-col gap-4  w-full lg:w-1/2 md:flex-col  justify-center items-center'>
         {/* user Details */}
-        <div className="w-full min-h-fit flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
+        <div className="w-full min-h-fit   flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
             >
             Your Details
             <InputCompo label="Name" placeholder="Your name" type="text" value={userDetail.name} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-#534AB7" onChange={(e)=>setUserDetail( 'name',e.target.value)}/>
@@ -59,7 +59,7 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
     </div>
 
     {/* Right Column — Invoice Preview */}
-    <div className="flex-1 min-h-full flex flex-col gap-3  "
+    <div className=" min-h-full w-full lg:w-1/2  "
         >
 <InvoiceCompo userDetail={userDetail} clientDetail={clientDetail}/>
     </div>
