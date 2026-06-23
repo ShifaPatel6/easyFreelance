@@ -1,4 +1,4 @@
-import { colors, RegularButton, Heading, OuterContainer, HeadingSubHeading, InputTag, StyledTextArea } from '../CommonCss/commoncss';
+import { colors, RegularButton, Heading, OuterContainer, HeadingSubHeading, InputTag, StyledTextArea ,ContainerText} from '../CommonCss/commoncss';
 import { useState } from 'react';
 import InputCompo from '../Common/InputCompo';
 import { Dropdown } from '../Common/Dropdown';
@@ -71,7 +71,8 @@ export const ProposalWriter = () => {
       
                     <div className='flex flex-row items-center gap-5 mb-4'>
 
-        <h1 className='uppercase'> Project details</h1> 
+                      <ContainerText > Project details </ContainerText>
+       
      <RegularButton className='h-8 w-24'
      disabled={!result}
      onClick={goToResult}
@@ -190,7 +191,16 @@ export const ProposalWriter = () => {
 
                     {/* Generate Button */}
                     <div className='flex justify-center md:justify-end w-full mt-4'>
-                        <RegularButton className='h-auto lg:h-10  text-xl px-6' disabled={DisableHelper} >
+                        <RegularButton className='h-auto lg:h-10  text-xl px-6' disabled={DisableHelper}
+                         onClick={()=>{
+    startLoading()
+    setTimeout(()=>{
+      setResult("testing responsiveness from proposal writer in mobile view")
+      stopLoading()
+      goToResult()
+
+    },5000)
+  }} >
                             Generate Proposal
                         </RegularButton>
                     </div>

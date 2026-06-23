@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { colors ,Heading, OuterContainer,HeadingSubHeading} from '../CommonCss/commoncss';
+import { colors ,Heading, OuterContainer,HeadingSubHeading,ContainerText} from '../CommonCss/commoncss';
 import InputCompo from '../Common/InputCompo';
 import WorkedItemCompo from '../components/WorkedItemCompo';
 import InvoiceCompo from '../components/InvoiceCompo';
@@ -35,7 +35,8 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
         {/* user Details */}
         <div className="w-full min-h-fit   flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
             >
-            Your Details
+               <ContainerText > Your details </ContainerText>
+
             <InputCompo label="Name" placeholder="Your name" type="text" value={userDetail.name} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-#534AB7" onChange={(e)=>setUserDetail( 'name',e.target.value)}/>
             <InputCompo label="Email" placeholder="Your Email" type="email" value={userDetail.email} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setUserDetail( 'email',e.target.value)}/>
             <InputCompo label="UPI / bank details" placeholder="Your bank details" type="text" value={userDetail.bankDetail} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setUserDetail( 'bankDetail',e.target.value)}/>
@@ -43,7 +44,8 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
         {/* Client Details */}
         <div className="w-full min-h-fit flex flex-col gap-3 justify-start rounded-2xl p-4 border-gray-300 border-2" 
            >
-            Client Details
+                          <ContainerText > Client details </ContainerText>
+
             <InputCompo label="Client name" placeholder="Client name" type="text" value={clientDetail.name} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e) => setClientDetail('name', e.target.value)}
  />
             <InputCompo label="Client Company" placeholder="Client Company" type="text" value={clientDetail.company} className="w-full h-10 rounded-md p-3 shadow-sm border-2 border-gray-300" onChange={(e)=>setClientDetail('company',e.target.value)} />

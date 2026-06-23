@@ -1,6 +1,7 @@
 import { CirclePlus } from 'lucide-react';
 import Workeditem from './Workeditem';
 import useWorkedItemStore from'../Store/WorkedItemStore'
+import {ContainerText} from "../CommonCss/commoncss"
 
  const WorkedItemCompo = ({showAddbtn = true ,isPreview = true}) => {
    
@@ -16,10 +17,12 @@ import useWorkedItemStore from'../Store/WorkedItemStore'
     <div className='w-full flex flex-col gap-3 justify-center'>
 
   <div className='grid grid-cols-4 text-center justify-start gap-2'>
-    <div>Description</div>
-    <div>Quantity</div>
-    <div>Rate</div>
-    <div>Amount</div>
+               <ContainerText > Description </ContainerText>
+                   <ContainerText > Quantity </ContainerText>
+
+                  <ContainerText > Rate </ContainerText>
+               <ContainerText > Amount </ContainerText>
+
   </div>
  <div className={`w-full flex flex-col gap-3 justify-start ${items.length > 4 ? 'overflow-y-scroll h-56' : ''} `}>
    {   items.map((item) => (
@@ -38,9 +41,9 @@ import useWorkedItemStore from'../Store/WorkedItemStore'
 
 <div className={isPreview ? "flex justify-between mt-2 items-center": "flex flex-col text-right mt-4"}>  
   
-<div>Subtotal :  ₹{getSubTotal().toLocaleString('en-IN')}</div>
-<div>GST(18%) : ₹{getGst().toLocaleString('en-IN')}</div>
-<div className={getTotal() ? "" :"text-lg mt-2"}>{isPreview ? "Total" : "Total due" } : ₹{getSubTotal().toLocaleString('en-IN')}</div>
+<div className='text-black font-medium'>Subtotal :  ₹{getSubTotal().toLocaleString('en-IN')}</div>
+<div className='text-black font-medium'>GST(18%) : ₹{getGst().toLocaleString('en-IN')}</div>
+<div className='text-black font-medium'>{isPreview ? "Total" : "Total due" } : ₹{getSubTotal().toLocaleString('en-IN')}</div>
 </div>
     </>
   )

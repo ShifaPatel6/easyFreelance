@@ -1,4 +1,4 @@
-import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading, StyledTextArea} from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading, ContainerText} from '../CommonCss/commoncss';
 import { useState } from 'react';
 import { History } from 'lucide-react';
 import {Link} from 'react-router-dom'
@@ -49,7 +49,11 @@ import {Link} from 'react-router-dom'
 
 <div className='flex flex-col md:flex-row  items-center gap-5 mb-4'>
 
+   <ContainerText>
+
    Paste Client Message or Brief
+
+   </ContainerText>
    
     <RegularButton className='h-8 w-24'
   disabled={!result} 
@@ -79,6 +83,16 @@ import {Link} from 'react-router-dom'
     <RegularButton 
   className='w-auto  h-auto md:h-10 text-xl'
   disabled={!userInput}
+  onClick={()=>{
+    startLoading()
+    setTimeout(()=>{
+      setResult("testing responsiveness from brief analyzer in mobile view")
+      stopLoading()
+      goToResult()
+
+    },5000)
+  }}
+ 
 
 >
   Analyze Brief

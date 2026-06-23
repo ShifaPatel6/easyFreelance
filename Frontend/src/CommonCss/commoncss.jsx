@@ -78,6 +78,13 @@ export const RegularButton = styled.button`
      font-weight: 500;
   color: ${ colors.textSecondary};
   `
+
+    export const ContainerText = styled.h1`
+  font-size: 0.9rem;
+     font-weight: 500;
+     text-transform: uppercase;
+  color: ${ colors.textSecondary};
+  `
   export const OuterContainer = styled.div`
   background: ${colors.white};
   display: flex;
@@ -132,7 +139,7 @@ position: fixed;
     overflow-y: auto; 
   `
   export const InputTag = styled.h1`
-  font-size: 0.95rem;
+  font-size: 0.8rem;
      font-weight: 700;
      margin-bottom:0.5rem;
   color: ${ colors.textSecondary};
