@@ -43,7 +43,7 @@ import {ContainerText} from "../CommonCss/commoncss"
   
 <div className='text-black font-medium'>Subtotal :  ₹{getSubTotal().toLocaleString('en-IN')}</div>
 <div className='text-black font-medium'>GST(18%) : ₹{getGst().toLocaleString('en-IN')}</div>
-<div className='text-black font-medium'>{isPreview ? "Total" : "Total due" } : ₹{getSubTotal().toLocaleString('en-IN')}</div>
+<div className='text-black font-medium'>{isPreview ? "Total" : "Total due" } : ₹{getTotal().toLocaleString('en-IN')}</div>
 </div>
     </>
   )
