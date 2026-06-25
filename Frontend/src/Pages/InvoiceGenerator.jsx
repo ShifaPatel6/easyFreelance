@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { colors ,Heading, OuterContainer,HeadingSubHeading,ContainerText} from '../CommonCss/commoncss';
+import { colors ,Heading, OuterContainer,HeadingSubHeading,ContainerText,RegularButton} from '../CommonCss/commoncss';
 import InputCompo from '../Common/InputCompo';
 import WorkedItemCompo from '../components/WorkedItemCompo';
 import InvoiceCompo from '../components/InvoiceCompo';
 import useInvoicedetailStore from '../Store/UserDetailStore';
+  import { CircleArrowLeft } from 'lucide-react';
+
 
 
  const InvoiceGenerator = () => {
@@ -27,6 +29,7 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
       <h1> Fill in project details - and get your professional invoice</h1> 
      </div>
    </HeadingSubHeading>
+
  
 <div className='h-auto w-full flex flex-col lg:flex-row gap-4 '>
 

@@ -38,7 +38,7 @@ import {Link} from 'react-router-dom'
   </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
-  <div className='h-auto md:w-full  border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
+  <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
 {activeTab === "result" ? 
 <div>
         <ResultCompo result={result} onBack={goToForm} />

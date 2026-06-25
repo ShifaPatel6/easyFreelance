@@ -91,8 +91,25 @@ export const RegularButton = styled.button`
   flex-direction: column;
   gap: 1.5rem;
   padding: 2.5rem;
+  overflow:hidden
   `
+export const NavItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
 
+  &:hover {
+    background-color: #e2e8f0;
+  }
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
+`
   export const HeadingSubHeading = styled.div`
   display: flex;
   flex-direction: column;
