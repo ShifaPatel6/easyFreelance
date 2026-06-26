@@ -4,6 +4,7 @@ import {Outlet} from "react-router-dom"
 import Navbar from '../components/Navbar';
 import MainHeader from '../components/mainHeader';
 import useToggleNav from '../Store/ToggleNav'
+import { colors } from '../CommonCss/commoncss';
 
  const Layout = () => {
     const { isToggleNav, toggleNav } =  useToggleNav()
@@ -21,12 +22,12 @@ import useToggleNav from '../Store/ToggleNav'
   <Navbar/>
    {isToggleNav && (
     <div 
-      className='fixed inset-0 bg-black bg-opacity-20 z-20 md:hidden'
+      className='fixed inset-0 bg-black bg-opacity-20 z-20 md:hidden' 
       onClick={toggleNav}
     />
   )}
 
-    <main className='flex-1 min-w-0 overflow-y-auto overflow-x-hidden'>
+    <main className='flex-1 min-w-0 overflow-y-auto overflow-x-hidden '>
       <Outlet/>
     </main>
   </div>

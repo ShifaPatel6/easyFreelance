@@ -6,7 +6,7 @@ import { InputTag ,StyledInput} from '../CommonCss/commoncss';
     <>
     
     
-    <div className='flex flex-col gap-1'>  
+    <div className='flex flex-col gap-1 '>  
       {label && <InputTag>{label}</InputTag>}
       <StyledInput
         type={type}

@@ -26,7 +26,7 @@ import {Link} from 'react-router-dom'
     Brief Analyzer  
   </Heading>
 
-  <RegularButton className="w-auto h-8 flex  gap-3 flex-row items-center justify-evenly p-2 " style={{backgroundColor: " #e2e8f0",color:'black'}}>
+  <RegularButton className="w-auto h-8 flex  gap-3 flex-row items-center justify-evenly p-2 " >
   <Link to="/history"> History</Link> 
     <History size={15}/>
   </RegularButton>

@@ -1,4 +1,4 @@
-import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTag, StyledTextArea} from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTag, StyledTextArea,ContainerText} from '../CommonCss/commoncss';
 import InputCompo from '../Common/InputCompo';
 import { useState,useRef } from 'react';
 import useInvoicedetailStore from '../Store/UserDetailStore';
@@ -54,7 +54,7 @@ return (
 
      
         <div className= 'flex flex-row items-center gap-5 mb-4'>
-          <h1 className='uppercase'>Your details</h1> 
+          <ContainerText>Your details</ContainerText> 
           <RegularButton className='h-8 w-24' disabled={!result} onClick={() => {  goToResult() }}>
             Result
           </RegularButton>

@@ -1,4 +1,4 @@
-import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTag} from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading,InputTag,ContainerText} from '../CommonCss/commoncss';
 import { useState } from 'react'
 import InputCompo from '../Common/InputCompo';
 import {Dropdown} from '../Common/Dropdown'
@@ -85,7 +85,7 @@ import { Loader } from '../components/Loader';
       
 <div className='flex flex-row items-center gap-5 mb-4'>
 
-        <h1 className='uppercase'> Invoice details</h1> 
+        <ContainerText > Invoice details</ContainerText> 
       <RegularButton className='h-8 w-24'
     disabled={!result}
     onClick={goToResult}>
