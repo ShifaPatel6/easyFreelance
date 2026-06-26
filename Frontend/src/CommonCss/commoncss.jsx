@@ -80,7 +80,7 @@ export const RegularButton = styled.button`
   color: ${ colors.textSecondary};
   `
 
-    export const ContainerText = styled.h1`
+    export const  ContainerText = styled.h1`
   font-size: 0.9rem;
      font-weight: 500;
      text-transform: uppercase;

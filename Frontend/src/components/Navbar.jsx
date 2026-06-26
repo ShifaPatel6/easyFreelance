@@ -18,7 +18,7 @@ import useToggleNav from '../Store/ToggleNav'
    <NavItem>
       
   <Menu size={20} className='block md:hidden ' onClick={toggleNav}/>
-  <ContainerText className='hidden md:block' onClick={toggleNav}>Tools</ContainerText>  
+  <h1 className='hidden md:block uppercase' onClick={toggleNav}>Tools</h1>  
  </NavItem>
      
   
