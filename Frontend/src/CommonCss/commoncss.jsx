@@ -12,6 +12,7 @@ export const colors = {
   error: '#ef4444',
   success: '#22c55e',
   background:'    #6366F1',
+  Menu:' #3b3ffd'
  
 }
 
@@ -22,6 +23,7 @@ export const  StyledInput = styled.input`
   padding: 12px;
   box-shadow:  0 10px 15px -3px rgba(0,0,0,0.1);
   border: 2px solid #d1d5db;
+  color:black;
   
   
   &:focus {
@@ -39,16 +41,17 @@ background: linear-gradient(
 height:3.5rem;
 
 `
-export const StyledTextArea = styled.input`
+export const StyledTextArea = styled.textarea`
   width: 100%;
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   border: 2px solid #d1d5db;
+  color:black;
   
   &:focus {
     outline: none;
-    border-color: ${colors.primary};
+    border-color: ${colors.background};
   }
 `
 
@@ -59,8 +62,8 @@ background: linear-gradient(
   #7C3AED,
   #6366F1
 );  color:white;
-  border-radius:9999px;
- border: 1px solid    #6366F1;
+    border-radius:9999px;
+    border: 1px solid #6366F1;
     padding-left: 1.5rem;
     padding-right: 1.5rem ;
 
@@ -81,6 +84,15 @@ background: linear-gradient(
     background: ${colors.lightBackground};
   }
  
+  `
+
+  export const SecondaryButton = styled(RegularButton)`
+   background:linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 50%, #C7D2FE 100%);
+   color:${colors.background};
+   height:2.3rem;
+
+  
+  
   `
   export const Heading = styled.h1`
   font-size: 1.875rem;
@@ -106,7 +118,7 @@ background: linear-gradient(
   gap: 1.5rem;
   padding: 2.5rem;
   overflow:hidden;
-  // min-height:100vh;
+  min-height:100vh;
   `
  export const NavContainer = styled.div`
   min-height: 100vh;
@@ -142,6 +154,7 @@ export const NavItem = styled.div`
   width: 100%;
   cursor: pointer;
   color:${colors.black};
+  font-weight: 600;
 
   &:hover {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -204,3 +217,5 @@ position: fixed;
      margin-bottom:0.5rem;
   color: ${ colors.black};
   `   
+
+  

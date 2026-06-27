@@ -5,7 +5,7 @@ import {Dropdown} from '../Common/Dropdown'
 import { ChevronDown } from 'lucide-react';
 import useInvoicedetailStore from '../Store/UserDetailStore';
 import useWorkedItemStore from '../Store/WorkedItemStore'
-import { CircleArrowLeft } from 'lucide-react';
+import { CircleArrowLeft,MoveRight } from 'lucide-react';
 import TabHooks from '../Hooks/TabHooks';
 import ResultCompo from '../components/ResultCompo';
 import useLoading from '../Hooks/LoadingHook';
@@ -59,13 +59,13 @@ import { Loader } from '../components/Loader';
 
 </div>
     <div>
-     <h1> Add invoice details - AI writes perfect payment reminder email for you</h1> 
+     <h1 className='flex gap-3'> Add invoice details <MoveRight style={{color:colors.Menu}} /> AI writes perfect payment reminder email for you</h1> 
     </div>
   </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
 
-  <div className='h-auto md:w-full    border-gray-200 border-2 flex flex-col  rounded-2xl mx-auto p-6  font-semibold'style={{color: colors.textSecondary}}>
+  <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
 {activeTab === "result"?
 
 <div>

@@ -1,6 +1,8 @@
 import {create} from 'zustand'
+import { persist } from 'zustand/middleware'
 
-const useInvoicedetailStore =create((set)=>({
+
+const useInvoicedetailStore =create(persist((set,get)=>({
 
     userDetail :{
         name:'',
@@ -34,7 +36,12 @@ const useInvoicedetailStore =create((set)=>({
     
 
 
-})
+}),
+{
+      name: 'gigmate-invoice', // localStorage key naam
+    }
+
+)
 
 
 )

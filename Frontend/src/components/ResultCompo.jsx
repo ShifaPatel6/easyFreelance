@@ -6,29 +6,14 @@ import {Loader} from "../components/Loader"
 
 const ResultCompo = ({ result, isLoading ,onBack}) => {
 
-  const resultRef = useRef(null)
 
-
-  useEffect(() => {
-    if (result) {
-      
-      setTimeout(() => {
-        resultRef.current?.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        })
-      }, 100)
-    }
-  }, [result])  // result change hone par scroll
-
-  if (!result && !isLoading) return null  // kuch nahi dikhao
 
   return (
     <>
     
     
 
-    <div ref={resultRef} >
+    <div className='text-black'>
 
       {isLoading ? (
         <Loader variant="dots" />  // tumhara loader component

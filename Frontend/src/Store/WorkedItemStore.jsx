@@ -1,6 +1,7 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-const useWorkedItemStore = create((set,get) => ({
+const useWorkedItemStore = create(persist((set,get) => ({
   items: [
     { id: 1, description: '', quantity: '', rate: '' ,amount:''},
     { id: 2, description: '', quantity: '', rate: '' ,amount:''},
@@ -32,6 +33,11 @@ const useWorkedItemStore = create((set,get) => ({
 
   getGst: () => get().getSubTotal() * 0.18,
   getTotal: () => get().getSubTotal() + get().getGst()
-}))
+}),
+{
+  name:'Worked-Item'
+}
+
+))
 
 export default useWorkedItemStore

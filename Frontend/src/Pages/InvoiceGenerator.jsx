@@ -4,7 +4,7 @@ import InputCompo from '../Common/InputCompo';
 import WorkedItemCompo from '../components/WorkedItemCompo';
 import InvoiceCompo from '../components/InvoiceCompo';
 import useInvoicedetailStore from '../Store/UserDetailStore';
-  import { CircleArrowLeft } from 'lucide-react';
+  import { MoveRight } from 'lucide-react';
 
 
 
@@ -26,7 +26,7 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
  
  </div>
      <div>
-      <h1> Fill in project details - and get your professional invoice</h1> 
+      <h1 className='flex gap-3'> Fill in project details <MoveRight style={{color:colors.Menu}} />  and get your professional invoice</h1> 
      </div>
    </HeadingSubHeading>
 

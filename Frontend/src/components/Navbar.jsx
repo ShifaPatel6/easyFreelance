@@ -18,38 +18,37 @@ import useToggleNav from '../Store/ToggleNav'
    <NavItem>
       
   <Menu size={20} className='block md:hidden ' onClick={toggleNav}/>
-  <h1 className='hidden md:block uppercase' onClick={toggleNav}>Tools</h1>  
+  <h1 className='hidden md:block uppercase' onClick={toggleNav} style={{color:colors.background}}>Tools</h1>  
  </NavItem>
-     
-  
+ 
    < div className='gap-4 flex flex-col '>
         <Link to="/BriefAnalyzer">
         <NavItem>
-       <Clock3 size={20} />
+       <Clock3 size={20} style={{color:colors.Menu}} strokeWidth={2.5}/>
         <span   className={isToggleNav ? "block" : "hidden md:block"}>Brief Analyzer </span >
         </NavItem>
         </Link>
         <Link to="/proposalWriter">
         < NavItem>
-       <NotepadText size={20} />
+       <NotepadText size={20}  style={{color:colors.Menu}} strokeWidth={2.5}/>
         <span  className={isToggleNav ? "block" : "hidden md:block"}>Proposal Writer</span>
         </NavItem>
         </Link>
         <Link to="/InvoiceGenerator">
         < NavItem>
-       <File size={20} />
+       <File size={20}  style={{color:colors.Menu}} strokeWidth={2.5}/>
         <span className={isToggleNav ? "block" : "hidden md:block"}>Invoice Generator</span>
         </NavItem>
         </Link>
         <Link to="/FollowUpWriter">
         < NavItem>
-       <LaptopMinimalCheck size={20} />
+       <LaptopMinimalCheck size={20}  style={{color:colors.Menu}} strokeWidth={2.5}/>
         <span  className={isToggleNav ? "block" : "hidden md:block"}>Follow-up Writer </span>
         </NavItem>
         </Link>
         <Link to="/BioWriter">
         < NavItem>
-        <UserRoundPen size={20} />
+        <UserRoundPen size={20}  style={{color:colors.Menu}} strokeWidth={2.5}/>
         <span className={isToggleNav ? "block" : "hidden md:block"}>Bio Writer </span>
         </NavItem>
         </Link>

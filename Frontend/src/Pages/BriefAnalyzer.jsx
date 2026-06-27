@@ -1,8 +1,8 @@
-import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading, ContainerText} from '../CommonCss/commoncss';
+import { colors,RegularButton ,Heading, OuterContainer,HeadingSubHeading, ContainerText,StyledTextArea} from '../CommonCss/commoncss';
 import { useState } from 'react';
 import { History } from 'lucide-react';
 import {Link} from 'react-router-dom'
-  import { CircleArrowLeft } from 'lucide-react';
+  import { CircleArrowLeft,MoveRight } from 'lucide-react';
   import TabHooks from '../Hooks/TabHooks';
   import ResultCompo from '../components/ResultCompo';
   import useLoading from '../Hooks/LoadingHook';
@@ -32,8 +32,9 @@ import {Link} from 'react-router-dom'
   </RegularButton>
 
 </div>
-    <div>
-     <h1> Paste client message → AI clearly explains what they actually want</h1> 
+    <div >
+     <h1 className='flex gap-3'> Paste client message <span> <MoveRight  style={{color:colors.Menu}}/>
+      </span> AI clearly explains what they actually want</h1> 
     </div>
   </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
@@ -72,13 +73,13 @@ import {Link} from 'react-router-dom'
 
                   <div className={isLoading ? 'opacity-20 pointer-events-none' : ''}>
 
-    <textarea name="Clientmsg" id="Clientmsg"
+    <StyledTextArea name="Clientmsg" id="Clientmsg"
     value={userInput}
     onChange={(e)=>{setUserInput(e.target.value)}}
-  className='w-auto md:w-full h-64 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2'
+  className='w-auto md:w-full h-64 p-4 rounded-2xl bg-white resize-none focus:outline-none border-gray-300 border-2 text-black'
  
 > 
-    </textarea>
+    </StyledTextArea>
     <div className='flex justify-center md:justify-end mt-4'>
     <RegularButton 
   className='w-auto  h-auto md:h-10 text-xl'

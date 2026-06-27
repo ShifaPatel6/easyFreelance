@@ -16,8 +16,8 @@ import {ContainerText} from "../CommonCss/commoncss"
     <>
     <div className='w-full flex flex-col gap-3 justify-center'>
 
-  <div className='grid grid-cols-4 text-center justify-start gap-2'>
-               <ContainerText > Description </ContainerText>
+  <div className=' grid grid-cols-4 text-center  gap-2'>
+               <ContainerText> Description </ContainerText>
                    <ContainerText > Quantity </ContainerText>
 
                   <ContainerText > Rate </ContainerText>
@@ -39,7 +39,7 @@ import {ContainerText} from "../CommonCss/commoncss"
  }
 </div>
 
-<div className={isPreview ? "flex justify-between mt-2 items-center": "flex flex-col text-right mt-4"}>  
+<div className="flex flex-col md:justify-between md:flex-row mt-4">  
   
 <div className='text-black font-medium'>Subtotal :  ₹{getSubTotal().toLocaleString('en-IN')}</div>
 <div className='text-black font-medium'>GST(18%) : ₹{getGst().toLocaleString('en-IN')}</div>

@@ -45,10 +45,12 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
                         <div
                             key={option.value}
                             onClick={() => handleSelectInput(option)}
-                            className='p-2 hover:bg-gray-200 cursor-pointer'
+                            className='p-2 hover:bg-gray-200 cursor-pointer text-black'
                         >
+
+                            {option.label }
+
                             
-                            {option.label}
                          
                            
                         </div>

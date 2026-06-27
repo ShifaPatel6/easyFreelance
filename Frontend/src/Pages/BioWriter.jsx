@@ -4,7 +4,7 @@ import { useState,useRef } from 'react';
 import useInvoicedetailStore from '../Store/UserDetailStore';
 import ResultCompo from '../components/ResultCompo';
 import TabHooks from '../Hooks/TabHooks';
-  import { CircleArrowLeft } from 'lucide-react';
+  import { CircleArrowLeft,MoveRight } from 'lucide-react';
   import { Loader } from '../components/Loader';
   import useLoading from '../Hooks/LoadingHook';
 
@@ -31,7 +31,8 @@ return (
       <Heading>Bio writer</Heading>
     </div>
     <div>
-      <h1>Enter your skills — AI will write a killer Upwork or LinkedIn bio that attracts clients.</h1> 
+      <h1 className='flex gap-3'>Turn your skills into a client-winning bio
+<MoveRight style={{color:colors.Menu}} /> in seconds, not hours.</h1> 
     </div>
     </HeadingSubHeading>
 

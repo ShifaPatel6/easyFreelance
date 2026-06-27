@@ -16,7 +16,6 @@ import { InputTag ,StyledInput} from '../CommonCss/commoncss';
         style={style}
         readOnly={readOnly} 
         className={className}
-        className='text-black'
 
       />
     </div>
