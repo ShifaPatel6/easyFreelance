@@ -28,7 +28,7 @@ const ResultCompo = ({ result, isLoading ,onBack}) => {
     
     
 
-    <div ref={resultRef}>
+    <div ref={resultRef} >
 
       {isLoading ? (
         <Loader variant="dots" />  // tumhara loader component

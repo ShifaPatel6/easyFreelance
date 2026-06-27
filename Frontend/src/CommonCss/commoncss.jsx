@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 // src/styles/colors.js
 export const colors = {
-  primary: '#534AB7',
+  primary: '#D1FAE5',
   primaryDark: '#3C3489',
   primaryLight: '#edf2f6',
   text: '#1a1a1a',
@@ -11,8 +11,8 @@ export const colors = {
   black: '#000000',
   error: '#ef4444',
   success: '#22c55e',
-  background:'#2C2347',
-  lightBackground:'#C4B0FF ',
+  background:'    #6366F1',
+ 
 }
 
 export const  StyledInput = styled.input`
@@ -26,8 +26,18 @@ export const  StyledInput = styled.input`
   
   &:focus {
     outline: none;
-    border-color: ${colors.primary};
+    border-color:#6366F1;
   }
+`
+export const StyledHeader = styled.div`
+background: linear-gradient(
+  100deg,
+  #bd96ff,
+  #3b3ffd
+);   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+height:3.5rem;
+
 `
 export const StyledTextArea = styled.input`
   width: 100%;
@@ -44,10 +54,13 @@ export const StyledTextArea = styled.input`
 
 
 export const RegularButton = styled.button`
-  background: ${colors.background};
-  color:white;
+background: linear-gradient(
+  135deg,
+  #7C3AED,
+  #6366F1
+);  color:white;
   border-radius:9999px;
- border: 1px solid #e2e8f0;
+ border: 1px solid    #6366F1;
     padding-left: 1.5rem;
     padding-right: 1.5rem ;
 
@@ -87,7 +100,7 @@ export const RegularButton = styled.button`
   color: ${ colors.black};
   `
   export const OuterContainer = styled.div`
-  background: linear-gradient(to right, #C4B0FF, #2C2347);
+  background:linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 50%, #C7D2FE 100%);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -98,7 +111,7 @@ export const RegularButton = styled.button`
  export const NavContainer = styled.div`
   min-height: 100vh;
   overflow: hidden;
-  background-color: ${colors.background};
+  background:linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 50%, #C7D2FE 100%);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   width: 48px;  /* default — closed */
   transition: right 0.4s   ease-in-out;
@@ -128,11 +141,11 @@ export const NavItem = styled.div`
   padding: 12px;
   width: 100%;
   cursor: pointer;
-  color:${colors.white};
+  color:${colors.black};
 
   &:hover {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  background-color:#665b86
+  // background-color:#665b86
 
   }
 
