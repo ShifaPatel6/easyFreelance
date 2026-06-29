@@ -2,6 +2,7 @@ const express = require('express');
 const app =express();
 const port = 5000;
 const testConnection = require('./src/testconnect')
+const briefAnalyzerRouter = require('./src/routes/BriefAnalyzer')
 
 app.use(express.json());
 
@@ -14,3 +15,5 @@ app.listen(port,()=>{
      testConnection();
     
 })
+
+app.use('/briefAnalyzer', briefAnalyzerRouter);

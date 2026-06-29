@@ -26,7 +26,13 @@ import useInvoicedetailStore from '../Store/UserDetailStore';
  
  </div>
      <div>
-      <h1 className='flex gap-3'> Fill in project details <MoveRight style={{color:colors.Menu}} />  and get your professional invoice</h1> 
+           <h1 className='flex flex-wrap items-center gap-2'>
+ <span>
+  Fill in project details
+  </span> <MoveRight style={{color:colors.Menu}} /> <span>
+    and get your professional invoice
+    
+    </span> </h1> 
      </div>
    </HeadingSubHeading>
 

@@ -32,10 +32,11 @@ import {Link} from 'react-router-dom'
   </RegularButton>
 
 </div>
-    <div >
-     <h1 className='flex gap-3'> Paste client message <span> <MoveRight  style={{color:colors.Menu}}/>
-      </span> AI clearly explains what they actually want</h1> 
-    </div>
+     <h1 className='flex flex-wrap items-center gap-2'>
+    <span>Paste client message</span>
+    <MoveRight style={{ color: colors.Menu }} />
+    <span>AI clearly explains what they actually want</span>
+  </h1>
   </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 

@@ -12,6 +12,7 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
   const getGst      = useWorkedItemStore((state) => state.getGst)
   const getTotal    = useWorkedItemStore((state) => state.getTotal)
 
+
   const [showCopy ,setShowCopy] =useState(false)
 
   const showToast = async () =>{
@@ -21,6 +22,9 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
     setShowCopy(true)
     setTimeout(()=>setShowCopy(false),2000)
 
+  }
+  const handleDownload =()=>{
+    InvoicePdf(clientDetail)
   }
 
   return (
@@ -104,7 +108,7 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
       </div>
 
       <div className='flex gap-4 mt-4'>
-        <RegularButton className='h-auto lg:h-10 px-6 w-auto 'onClick={InvoicePdf}  disabled={!userDetail.name} >
+        <RegularButton className='h-auto lg:h-10 px-6 w-auto 'onClick={handleDownload}  disabled={!userDetail.name} >
           Download Pdf
         </RegularButton>
 

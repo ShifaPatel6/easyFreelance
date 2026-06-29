@@ -31,8 +31,14 @@ return (
       <Heading>Bio writer</Heading>
     </div>
     <div>
-      <h1 className='flex gap-3'>Turn your skills into a client-winning bio
-<MoveRight style={{color:colors.Menu}} /> in seconds, not hours.</h1> 
+           <h1 className='flex flex-wrap items-center gap-2'>
+<span>
+ Turn your skills into a client-winning bio
+  </span>
+<MoveRight style={{color:colors.Menu}} />
+<span>
+  in seconds, not hours.
+  </span> </h1> 
     </div>
     </HeadingSubHeading>
 

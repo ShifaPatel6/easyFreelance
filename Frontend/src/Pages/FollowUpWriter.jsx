@@ -59,7 +59,11 @@ import { Loader } from '../components/Loader';
 
 </div>
     <div>
-     <h1 className='flex gap-3'> Add invoice details <MoveRight style={{color:colors.Menu}} /> AI writes perfect payment reminder email for you</h1> 
+     <h1 className='flex flex-wrap items-center gap-2'> <span>
+      Add invoice details
+      </span> <MoveRight style={{color:colors.Menu}} /> <span>
+        AI writes perfect payment reminder email for you
+        </span> </h1> 
     </div>
   </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>

@@ -44,7 +44,12 @@ export const ProposalWriter = () => {
                         <Heading>Proposal Writer</Heading>
                     </div>
                     <div>
-                        <h1 className='flex gap-3'>Add project details <MoveRight style={{color:colors.Menu}} /> AI writes a winning proposal for you along with pricing</h1>
+                           <h1 className='flex flex-wrap items-center gap-2'>
+<span>
+    Add project details
+    </span> <MoveRight style={{color:colors.Menu}} /> <span>
+        AI writes a winning proposal for you along with pricing
+        </span></h1>
                     </div>
                 </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>

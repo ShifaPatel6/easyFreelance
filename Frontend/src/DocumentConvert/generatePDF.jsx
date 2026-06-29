@@ -1,7 +1,9 @@
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
-const generatePDF = async () => {
+
+const generatePDF = async (clientDetail) => {
+
   const element = document.getElementById('invoice-preview')
 
   const canvas = await html2canvas(element, {
@@ -19,7 +21,7 @@ const generatePDF = async () => {
   const pdfHeight = (canvas.height * pdfWidth) / canvas.width
 
   pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
-  pdf.save('invoice.pdf')
+  pdf.save(`${clientDetail.name} Invoice.pdf`)
 }
 export default generatePDF
 
