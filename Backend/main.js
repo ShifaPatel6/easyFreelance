@@ -3,6 +3,15 @@ const app =express();
 const port = 5000;
 const testConnection = require('./src/testconnect')
 const briefAnalyzerRouter = require('./src/routes/BriefAnalyzer')
+const ProposalWriterRouter = require('./src/routes/ProposalWriter')
+const cors = require('cors')
+
+
+app.use(cors({
+    origin: 'http://localhost:5173', // Aapka frontend URL
+    methods: ['GET', 'POST'],        // Jo methods aap allow karna chahte hain
+    credentials: true                // Agar cookies ya headers bhej rahe hain
+}));
 
 app.use(express.json());
 
@@ -17,3 +26,5 @@ app.listen(port,()=>{
 })
 
 app.use('/briefAnalyzer', briefAnalyzerRouter);
+app.use('/ProposalWriter', ProposalWriterRouter);
+

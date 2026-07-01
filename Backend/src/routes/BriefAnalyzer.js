@@ -13,7 +13,7 @@ Return JSON only, no extra text:
   "what_they_want": "summary here",
   "missing_info": ["point1", "point2"],
   "deliverables": ["item1", "item2"],
-  "questions": ["question1", "question2"],
+  "questions": ["question1s", "question2"],
   "complexity": "Low/Medium/High",
   "price_range": "estimated range"
 }`
@@ -27,7 +27,7 @@ const aiResponse = await callGemini(prompt)
         ai_output:aiResponse
     })
 
-    res.json({result:aiResponse})
+    res.json({aiResponse})
 
 })
 module.exports = router;

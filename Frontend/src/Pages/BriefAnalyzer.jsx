@@ -7,15 +7,27 @@ import {Link} from 'react-router-dom'
   import ResultCompo from '../components/ResultCompo';
   import useLoading from '../Hooks/LoadingHook';
   import { Loader } from '../components/Loader';
-
-
+  import Analysisbox from '../components/Analysisbox';
 
  const BriefAnalyzer = () => {
-  const[userInput , setUserInput] = useState('');
-  const[result , setResult] = useState('');
+  const [userInput , setUserInput] = useState('i need 2 mobile apps');
+  const [result , setResult] = useState();
   const { activeTab,  goToResult, goToForm } = TabHooks()
   const { isLoading, startLoading, stopLoading } = useLoading()
-  
+
+  const handleAnalyze = async () => {
+    startLoading()
+    const response = await fetch('http://localhost:5000/briefAnalyzer',{
+      method:"POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ brief: userInput,  user_id: '123' })   
+    })
+    const data = await response.json()
+    setResult(data)
+goToResult();         
+
+    stopLoading();
+  }
 
   return (
     <>
@@ -43,7 +55,11 @@ import {Link} from 'react-router-dom'
   <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
 {activeTab === "result" ? 
 <div>
-        <ResultCompo result={result} onBack={goToForm} />
+        <ResultCompo result={result.aiResponse
+} onBack={goToForm} />
+
+        
+         
       </div>
       :
 
@@ -85,17 +101,8 @@ import {Link} from 'react-router-dom'
     <RegularButton 
   className='w-auto  h-auto md:h-10 text-xl'
   disabled={!userInput}
-  onClick={()=>{
-    startLoading()
-    setTimeout(()=>{
-      setResult("testing responsiveness from brief analyzer in mobile view")
-      stopLoading()
-      goToResult()
-
-    },5000)
-  }}
- 
-
+  onClick={handleAnalyze}
+  
 >
   Analyze Brief
 </RegularButton>

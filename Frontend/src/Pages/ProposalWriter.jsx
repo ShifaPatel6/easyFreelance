@@ -35,7 +35,25 @@ export const ProposalWriter = () => {
         { label: 'UI/UX Design', value: 'ui_ux_design' },
 
     ]
+    
+    
     const DisableHelper =!ProposalInfo.clientName || !ProposalInfo.brief || !ProposalInfo.experience || !ProposalInfo.budget || !ProposalInfo.timeline ||!ProposalInfo.skills
+    
+    const handleAnalyze = async () => {
+    startLoading()
+    const response = await fetch('http://localhost:5000/ProposalWriter',{
+      method:"POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills })   
+    })
+    const data = await response.json()
+    setResult(data)
+    
+    goToResult();         
+    stopLoading();
+  }
+    
+    
     return (
         <>
             <OuterContainer>
@@ -59,7 +77,7 @@ export const ProposalWriter = () => {
                   {activeTab ==="result" ?
                   
                 <div>
-        <ResultCompo result={result} onBack={goToForm} />
+        <ResultCompo result={result.aiResponse} onBack={goToForm} />
       </div> :
 
       <>
@@ -197,15 +215,7 @@ export const ProposalWriter = () => {
                     {/* Generate Button */}
                     <div className='flex justify-center md:justify-end w-full mt-4'>
                         <RegularButton className='h-auto lg:h-10  text-xl px-6' disabled={DisableHelper}
-                         onClick={()=>{
-    startLoading()
-    setTimeout(()=>{
-      setResult("testing responsiveness from proposal writer in mobile view")
-      stopLoading()
-      goToResult()
-
-    },5000)
-  }} >
+                         onClick={handleAnalyze} >
                             Generate Proposal
                         </RegularButton>
                     </div>
