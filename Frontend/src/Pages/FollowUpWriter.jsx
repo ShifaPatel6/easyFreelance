@@ -44,8 +44,6 @@ import { Loader } from '../components/Loader';
   
 ]
     const DisableHelper =!tone ||!label|| !clientDetail.invoiceAmount;
-
-    console.log(tone , label , clientDetail.invoiceAmount , "here is proposal writer");
     
 
   return (

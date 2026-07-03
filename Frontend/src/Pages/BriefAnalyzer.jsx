@@ -7,8 +7,7 @@ import {Link} from 'react-router-dom'
   import ResultCompo from '../components/ResultCompo';
   import useLoading from '../Hooks/LoadingHook';
   import { Loader } from '../components/Loader';
-  import Analysisbox from '../components/Analysisbox';
-
+import { getToken } from '../Helper/tokenHelper';
  const BriefAnalyzer = () => {
   const [userInput , setUserInput] = useState('i need 2 mobile apps');
   const [result , setResult] = useState();
@@ -17,10 +16,13 @@ import {Link} from 'react-router-dom'
 
   const handleAnalyze = async () => {
     startLoading()
-    const response = await fetch('http://localhost:5000/briefAnalyzer',{
-      method:"POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ brief: userInput,  user_id: '123' })   
+    const response = await getToken({
+      url: 'http://localhost:5000/briefAnalyzer',
+      options: {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ brief: userInput })
+      }
     })
     const data = await response.json()
     setResult(data)

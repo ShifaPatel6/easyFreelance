@@ -9,6 +9,7 @@ import { Loader } from '../components/Loader';
   import TabHooks from '../Hooks/TabHooks';
   import ResultCompo from '../components/ResultCompo';
     import useLoading from '../Hooks/LoadingHook';
+    import { getToken } from '../Helper/tokenHelper';
 
 
 
@@ -20,9 +21,6 @@ export const ProposalWriter = () => {
          const[result,setResult]=useState('');
              const { activeTab,  goToResult, goToForm } = TabHooks()
              const { isLoading, startLoading, stopLoading } = useLoading()
-
-
-
 
     const ProposalInfo = useProposalWriterStore((state)=>state.ProposalInfo)
     const setProposalInfo =useProposalWriterStore((state)=>state.setProposalInfo)
@@ -36,24 +34,24 @@ export const ProposalWriter = () => {
 
     ]
     
-    
     const DisableHelper =!ProposalInfo.clientName || !ProposalInfo.brief || !ProposalInfo.experience || !ProposalInfo.budget || !ProposalInfo.timeline ||!ProposalInfo.skills
     
     const handleAnalyze = async () => {
     startLoading()
-    const response = await fetch('http://localhost:5000/ProposalWriter',{
-      method:"POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills })   
+    const response = await getToken({
+      url: 'http://localhost:5000/ProposalWriter',
+      options: {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills })
+      }
     })
     const data = await response.json()
     setResult(data)
-    
     goToResult();         
     stopLoading();
   }
-    
-    
+ 
     return (
         <>
             <OuterContainer>

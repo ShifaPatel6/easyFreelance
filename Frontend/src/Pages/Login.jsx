@@ -35,8 +35,6 @@ export const Login = () => {
       .single()
       navigate('/BriefAnalyzer')  
       const name = UserData.name.split(' ')[0]
-      console.log(name);
-      
       setPlan(UserData.plan, name)     
 }
   setLoading(false)

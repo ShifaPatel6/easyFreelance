@@ -2,9 +2,11 @@ const callGemini = require("../Helper/GeminiAi")
 const supabase = require("../Db/Supabaseclient")
 const express = require('express')
 const router = express.Router()
+const verifyUser = require('../middlewares/verifyUser')
 
-router.post('/',async(req,res)=>{
+router.post('/',verifyUser,async(req,res)=>{
     const{clientName,budget,label,brief,experience,timeline,skills} =req.body;
+    const userId = req.user.id; // Assuming the user ID is available in req.user after verification
 
   const prompt = `Analyze this proposal format and generate professional level proposal for client ${clientName}. 
 User details: budget: ${budget}, specialization: ${label}, brief: ${brief}, experience: ${experience}, timeline: ${timeline}, skills: ${skills}
@@ -21,12 +23,18 @@ Return JSON only, no extra text, no markdown:
 
     const aiResponse = await callGemini(prompt)
     await supabase
-    .from('ProposalWriter')
+    .from('ProposalDb')
     .insert({
         client_name : clientName,
         label : label,
         ai_output:aiResponse
     })
+
+    if(error){
+        console.error(error);
+        res.status(500).json({ error});
+        return;
+    }
     res.json({aiResponse})
 
 
