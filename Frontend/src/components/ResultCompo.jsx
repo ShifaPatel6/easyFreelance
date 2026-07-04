@@ -28,28 +28,36 @@ const lightColors = [
         <Loader variant="dots" />  // tumhara loader component
       ) : (
      
-    <div>
-      {Object.entries(result).map(([key, value], index) => {
-        const randomColor = lightColors[index % lightColors.length];
+  <div style={{ 
+    padding: "20px",
+    backgroundColor: "#f9f9f9",
+    borderRadius: "12px"
+}}>
+  {Object.entries(result).map(([key, value], index) => {
+    const randomColor = lightColors[index % lightColors.length];
 
-        return (
-          <div key={key}>
-            <h3 className={`${randomColor} p-1 rounded-md inline-block`}>
-              {key.replace(/_/g, " ").toUpperCase()}
-            </h3>
+    return (
+      <div key={key} style={{ marginBottom: "24px" }}>
+        {/* Key Title Heading */}
+        <h3 className={`${randomColor} p-1 rounded-md inline-block`} style={{ marginBottom: "12px" }}>
+          {key.replace(/_/g, " ").toUpperCase()}
+        </h3>
 
-            {Array.isArray(value) ? (
-              <ul>
-                {value.map((item, i) => <li key={i}>{item}</li>)}
-              </ul>
-            ) : (
-              <p>{value}</p>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  
+        {/* Text Container with whiteSpace: "pre-line" */}
+        <div style={{ 
+          whiteSpace: "pre-line", // 🔥 Yeh \n\n ko real blank spaces/line breaks me badlega
+          lineHeight: "1.8",
+          color: "#333",
+          fontSize: "15px"
+        }}>
+          {value}
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+
       )}
     </div>
     </>

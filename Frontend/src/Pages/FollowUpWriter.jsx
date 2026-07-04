@@ -10,6 +10,8 @@ import TabHooks from '../Hooks/TabHooks';
 import ResultCompo from '../components/ResultCompo';
 import useLoading from '../Hooks/LoadingHook';
 import { Loader } from '../components/Loader';
+import { getToken } from '../Helper/tokenHelper';
+
 
 
 
@@ -44,7 +46,27 @@ import { Loader } from '../components/Loader';
   
 ]
     const DisableHelper =!tone ||!label|| !clientDetail.invoiceAmount;
-    
+    const handleGenerateEmail = async () => {
+      startLoading();
+      const result = await getToken({
+            url: 'http://localhost:5000/FollowUpWriter',
+            options: {
+              method: "POST",
+              headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({
+          tone: tone,
+          clientName: clientDetail.name,
+          invoiceAmount: clientDetail.invoiceAmount,
+          label: label,
+          userName: userDetail.name,
+          Duedate: clientDetail.dueDate
+        })
+      }});
+      const data = await result.json();
+      setResult(data.response);
+      stopLoading();
+      goToResult();
+    }
 
   return (
     <>
@@ -172,6 +194,7 @@ import { Loader } from '../components/Loader';
     <RegularButton 
   className='w-auto h-auto md:h-10 text-xl '
   disabled={DisableHelper}
+  onClick={handleGenerateEmail}
  
 >
  Generate Email

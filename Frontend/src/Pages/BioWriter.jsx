@@ -7,6 +7,7 @@ import TabHooks from '../Hooks/TabHooks';
   import { CircleArrowLeft,MoveRight } from 'lucide-react';
   import { Loader } from '../components/Loader';
   import useLoading from '../Hooks/LoadingHook';
+import { getToken } from '../Helper/tokenHelper';
 
 
  const BioWriter = () => {
@@ -22,7 +23,26 @@ const { isLoading, startLoading, stopLoading } = useLoading()
         const setUserDetail =useInvoicedetailStore((state)=>state.setUserDetail)
 
         const DisableHelper =!tone ||!userDetail.name || !jobTitle || !userDetail.exp || !userDetail.skills;
-
+ const hadnleBioWriter = async () => {
+      startLoading();
+      const result = await getToken({
+            url: 'http://localhost:5000/BioWriter',
+            options: {
+              method: "POST",
+              headers: { 'Content-Type': 'application/json' },
+        body:JSON.stringify({
+          tone: tone,
+          jobTitle: jobTitle,
+          skills: userDetail.skills,
+          exp: userDetail.exp,
+          userName: userDetail.name,
+        })
+      }});
+      const data = await result.json();
+      setResult(data.response);
+      stopLoading();
+      goToResult();
+    }
 return (
     <>
     <OuterContainer>
@@ -101,16 +121,7 @@ return (
         <RegularButton 
           className='w-auto h-auto lg:h-10 text-xl mt-6'
           disabled={DisableHelper}
-        onClick={() => {
-          startLoading()
-          
-          // API call simulate kar rahe hain — baad mein real API lagana
-          setTimeout(() => {
-            setResult("I am a passionate Frontend Developer...")
-            stopLoading()
-            goToResult()
-          }, 5000)  // 2 sec fake loading
-        }}
+        onClick={hadnleBioWriter}
         >
           Generate Bio
         </RegularButton>
