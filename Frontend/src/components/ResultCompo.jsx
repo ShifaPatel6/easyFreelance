@@ -20,18 +20,17 @@ const lightColors = [
   return (
     <>
     
-    
-
-    <div className='text-black overflow-auto' style={{maxHeight:'400px'}}>
+    <div className='text-black overflow-auto ' style={{maxHeight:'400px'}}>
 
       {isLoading ? (
-        <Loader variant="dots" />  // tumhara loader component
+        <Loader variant="dots" />  //loader component
       ) : (
      
   <div style={{ 
     padding: "20px",
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "white",
     borderRadius: "12px"
+
 }}>
   {Object.entries(result).map(([key, value], index) => {
     const randomColor = lightColors[index % lightColors.length];
@@ -44,14 +43,13 @@ const lightColors = [
         </h3>
 
         {/* Text Container with whiteSpace: "pre-line" */}
-        <div style={{ 
-          whiteSpace: "pre-line", // 🔥 Yeh \n\n ko real blank spaces/line breaks me badlega
-          lineHeight: "1.8",
-          color: "#333",
-          fontSize: "15px"
-        }}>
-          {value}
-        </div>
+        <div style={{ whiteSpace: "pre-line", lineHeight: "1.8" }}>
+  {typeof value === 'string' 
+    ? value.replaceAll('\\n', '\n') 
+    : value
+  }
+
+</div>
       </div>
     );
   })}

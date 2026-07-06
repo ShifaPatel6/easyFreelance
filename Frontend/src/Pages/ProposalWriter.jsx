@@ -10,6 +10,7 @@ import { Loader } from '../components/Loader';
   import ResultCompo from '../components/ResultCompo';
     import useLoading from '../Hooks/LoadingHook';
     import { getToken } from '../Helper/tokenHelper';
+    import usePlanStore from '../Store/PlanStore';
 
 
 
@@ -21,9 +22,12 @@ export const ProposalWriter = () => {
          const[result,setResult]=useState('');
              const { activeTab,  goToResult, goToForm } = TabHooks()
              const { isLoading, startLoading, stopLoading } = useLoading()
+               const name = usePlanStore((state)=> state.name)
+
 
     const ProposalInfo = useProposalWriterStore((state)=>state.ProposalInfo)
     const setProposalInfo =useProposalWriterStore((state)=>state.setProposalInfo)
+
 
     const optionsarr = [
         { label: 'Other', value: 'other' },
@@ -43,7 +47,7 @@ export const ProposalWriter = () => {
       options: {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills })
+        body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills, userName:name })
       }
     })
     const data = await response.json()
@@ -70,13 +74,13 @@ export const ProposalWriter = () => {
                 </HeadingSubHeading>
                       <RegularButton  disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 ' onClick={goToForm}><CircleArrowLeft/></RegularButton>
 
-  <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
                   
+  <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
                   {activeTab ==="result" ?
                   
-                <div>
+             
         <ResultCompo result={result.aiResponse} onBack={goToForm} />
-      </div> :
+      :
 
       <>
 
