@@ -36,26 +36,48 @@ JSON Structure:
 
 
     try {
-        const response = await callGemini(prompt)
+        const aiResponse = await callGemini(prompt)
+         if(aiResponse && aiResponse.error){
 
-        const { data, error } = await supabase
+        return res.status(500).json({ 
+              success: false, 
+              message: "Didn't get valid response from AI.",
+              details: aiResponse.rawText 
+          });
+    }
+
+        const { data, error: supabaseError } = await supabase
             .from('FollowupWriter')
             .insert({
                 user_id: user_id,
-                email_draft: response   // note: 'prompt' nahi, 'response' save karna chahiye — niche explain kiya hai
+                email_draft: aiResponse   
             })
 
-        if (error) {
-            console.error('Insert error:', error)
-            return res.status(500).json({ error: 'Database insert failed' })
+        
+    if(supabaseError){
+
+        return res.status(500).json({ 
+               success: false, 
+               message: "Failed to insert data.",
+               error: supabaseError.message
+           });
         }
 
-        res.json({ response, data })
+          
+        return res.status(201).json({ 
+            success: true, 
+            aiResponse 
+        });
 
-    } catch (error) {
-        console.error('Error:', error)
-        return res.status(500).json({ error: 'Something went wrong' })
-    }
+    } catch(error){
+    console.error(error,"unexpected error occurred");
+    return res.status(500).json({ 
+        success: false, 
+        message: "An unexpected error occurred.",
+        error: error.message
+    });
+
+}
 })
 
 module.exports = router;

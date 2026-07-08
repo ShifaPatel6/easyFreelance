@@ -2,7 +2,7 @@ import {create} from 'zustand'
 import { persist } from 'zustand/middleware'
 
 
-const useInvoicedetailStore =create(persist((set,get)=>({
+const useInvoicedetailStore = create(persist((set,get)=>({
 
     userDetail :{
         name:'',
@@ -12,7 +12,6 @@ const useInvoicedetailStore =create(persist((set,get)=>({
         jobTitle:'',
         skills:[]
     },
-
     clientDetail :{
         name:'',
         company:'',
@@ -24,7 +23,6 @@ const useInvoicedetailStore =create(persist((set,get)=>({
 
     },
     //setter
-
     setUserDetail:(feild ,value)=>set((state)=>({
         userDetail:{...state.userDetail,[feild]:value}
     })),
@@ -32,13 +30,9 @@ const useInvoicedetailStore =create(persist((set,get)=>({
     clientDetail:{...state.clientDetail,[feild]:value}
 }))
 
-
-    
-
-
 }),
 {
-      name: 'gigmate-invoice', // localStorage key naam
+      name: 'gigmate-invoice',
     }
 
 )

@@ -11,6 +11,7 @@ import { Loader } from '../components/Loader';
     import useLoading from '../Hooks/LoadingHook';
     import { getToken } from '../Helper/tokenHelper';
     import usePlanStore from '../Store/PlanStore';
+    import ErrorCompo from '../components/ErrorCompo';
 
 
 
@@ -42,18 +43,30 @@ export const ProposalWriter = () => {
     
     const handleAnalyze = async () => {
     startLoading()
-    const response = await getToken({
-      url: 'http://localhost:5000/ProposalWriter',
-      options: {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills, userName:name })
+    try{
+        const response = await getToken({
+          url: 'http://localhost:5000/ProposalWriter',
+          options: {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ clientName: ProposalInfo.clientName, budget: ProposalInfo.budget, label: label, brief: ProposalInfo.brief, experience: ProposalInfo.experience, timeline: ProposalInfo.timeline, skills: ProposalInfo.skills, userName:name })
+          }
+        })
+        if (!response.ok) {
+      const errData = await response.json()
+      throw new Error(errData.message || "Something went wrong")
       }
-    })
-    const data = await response.json()
-    setResult(data)
-    goToResult();         
-    stopLoading();
+        const data = await response.json()
+        setResult(data)
+        goToResult();         
+        stopLoading();
+
+
+    }catch {
+  setError("An error occurred while generating the email. Please try again later.")
+  setTimeout(() => setError(null), 6000)
+  stopLoading()
+}
   }
  
     return (
@@ -76,6 +89,13 @@ export const ProposalWriter = () => {
 
                   
   <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
+                  
+                  {error && <div className='flex justify-center items-center'>
+  <div className='w-auto md:w-1/2'>
+    <ErrorCompo error={error} />
+  </div>
+</div>  
+}
                   {activeTab ==="result" ?
                   
              

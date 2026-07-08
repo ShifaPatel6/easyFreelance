@@ -8,8 +8,6 @@ router.post('/',verifyUser,async(req,res)=>{
     const{clientName,budget,label,brief,experience,timeline,skills,userName} =req.body;
     
     const user_id = req.user.id; 
-    console.log(user_id,"user_id");
-
 const prompt = `You are an elite, top-rated freelance consultant and business writer. Your task is to generate a comprehensive, high-converting project proposal for the client.
 
 Client & Project Context:
@@ -55,12 +53,11 @@ JSON Structure:
 try{
 
     const aiResponse = await callGemini(prompt)
-// Agar middleware se fallback error object aaya hai
     if (aiResponse.error) {
         return res.status(500).json({ 
             success: false, 
             message: "Didn't get valid response from AI.",
-            details: aiResponse.rawText 
+             error: "Internal Server Error"
         });
     }
     const { data, error } =await supabase

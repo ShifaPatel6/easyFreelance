@@ -41,30 +41,50 @@ try
 {
 
     const aiResponse = await callGemini(prompt)
-       const { data, error } = await supabase
+
+    if(aiResponse && aiResponse.error){
+
+        return res.status(500).json({ 
+              success: false, 
+              message: "Didn't get valid response from AI.",
+              details: aiResponse.rawText 
+          });
+    }
+
+       const { data, error:supabaseError  } = await supabase
         .from('Analyzer')
         .insert({
             user_id: user_id,
             input_text: brief,
             ai_output: aiResponse
         })
-    
-    if (error) {
-        console.log('Insert error:', error)
-        return res.status(500).json({ error: error.message })
-    }
-    res.json({ aiResponse, data })
 
+    if(supabaseError){
+
+        return res.status(500).json({ 
+               success: false, 
+               message: "Failed to insert data.",
+               error: supabaseError.message
+           });
+        }
+        
+        return res.status(201).json({ 
+            success: true, 
+            aiResponse, 
+            data 
+        });
     
     
 }
-
 catch(error){
-    
+    console.error(error,"unexpected error occurred");
+    return res.status(500).json({ 
+        success: false, 
+        message: "An unexpected error occurred.",
+        error: error.message
+    });
 
 }
-res.json({ aiResponse, data })
 
-
-})
+ })
 module.exports = router;

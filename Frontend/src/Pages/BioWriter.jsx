@@ -8,12 +8,13 @@ import TabHooks from '../Hooks/TabHooks';
   import { Loader } from '../components/Loader';
   import useLoading from '../Hooks/LoadingHook';
 import { getToken } from '../Helper/tokenHelper';
+import ErrorCompo from '../components/ErrorCompo';
 
 
  const BioWriter = () => {
     const { activeTab,  goToResult, goToForm } = TabHooks()
 const { isLoading, startLoading, stopLoading } = useLoading()
-
+const[error ,setError] = useState(null)
      const [label, setLabel] = useState('');
      const[result,setResult]=useState('')
         const [tone ,setTone] =useState('');
@@ -25,23 +26,36 @@ const { isLoading, startLoading, stopLoading } = useLoading()
         const DisableHelper =!tone ||!userDetail.name || !jobTitle || !userDetail.exp || !userDetail.skills;
  const hadnleBioWriter = async () => {
       startLoading();
-      const result = await getToken({
-            url: 'http://localhost:5000/BioWriter',
-            options: {
-              method: "POST",
-              headers: { 'Content-Type': 'application/json' },
-        body:JSON.stringify({
-          tone: tone,
-          jobTitle: jobTitle,
-          skills: userDetail.skills,
-          exp: userDetail.exp,
-          userName: userDetail.name,
-        })
-      }});
-      const data = await result.json();
-      setResult(data.response);
-      stopLoading();
+      try{
+
+        const response = await getToken({
+              url: 'http://localhost:5000/BioWriter',
+              options: {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+          body:JSON.stringify({
+            tone: tone,
+            jobTitle: jobTitle,
+            skills: userDetail.skills,
+            exp: userDetail.exp,
+            userName: userDetail.name,
+          })
+        }});
+       if (!response.ok) {
+      const errData = await response.json()
+      throw new Error(errData.message || "Something went wrong")
+      }
+      const data = await response.json();
+      console.log(data,"data is here");
+       stopLoading();
+      setResult(data.aiResponse);
       goToResult();
+    } catch {
+  setError("An error occurred while generating the email. Please try again later.")
+  setTimeout(() => setError(null), 6000)
+  stopLoading()
+}
+
     }
 return (
     <>
@@ -64,7 +78,12 @@ return (
 
   <RegularButton onClick={goToForm} disabled={!result} className='w-2 items-center flex flex-col rounded-full p-2 '><CircleArrowLeft/></RegularButton>
   <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
-   
+   {error && <div className='flex justify-center items-center'>
+     <div className='w-auto md:w-1/2'>
+       <ErrorCompo error={error} />
+     </div>
+   </div>  
+   }
     {activeTab === "result" ? 
       <div>
         <ResultCompo result={result} onBack={goToForm} />

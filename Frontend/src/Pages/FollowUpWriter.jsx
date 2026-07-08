@@ -11,6 +11,7 @@ import ResultCompo from '../components/ResultCompo';
 import useLoading from '../Hooks/LoadingHook';
 import { Loader } from '../components/Loader';
 import { getToken } from '../Helper/tokenHelper';
+import ErrorCompo from '../components/ErrorCompo';
 
 
 
@@ -18,6 +19,7 @@ import { getToken } from '../Helper/tokenHelper';
  const FollowUpWriter = () => {
   const[result , setResult] = useState('');
     const [label, setLabel] = useState('');
+    const[error ,setError] = useState(null)
     const [tone ,setTone] =useState('');
     
         const { activeTab,  goToResult, goToForm } = TabHooks()
@@ -48,25 +50,40 @@ import { getToken } from '../Helper/tokenHelper';
     const DisableHelper =!tone ||!label|| !clientDetail.invoiceAmount;
     const handleGenerateEmail = async () => {
       startLoading();
-      const result = await getToken({
-            url: 'http://localhost:5000/FollowUpWriter',
-            options: {
-              method: "POST",
-              headers: { 'Content-Type': 'application/json' },
-        body:JSON.stringify({
-          tone: tone,
-          clientName: clientDetail.name,
-          invoiceAmount: clientDetail.invoiceAmount,
-          label: label,
-          userName: userDetail.name,
-          Duedate: clientDetail.dueDate
-        })
-      }});
-      const data = await result.json();
-      setResult(data.response);
+      try{
+
+        const response = await getToken({
+              url: 'http://localhost:5000/FollowUpWriter',
+              options: {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+          body:JSON.stringify({
+            tone: tone,
+            clientName: clientDetail.name,
+            invoiceAmount: clientDetail.invoiceAmount,
+            label: label,
+            userName: userDetail.name,
+            Duedate: clientDetail.dueDate
+          })
+        }});
+        if(!response.ok){
+          const errData = await response.json();
+          throw new Error(errData.message || "Something went wrong");
+        }
+        const data = await response.json();
+        setResult(data.aiResponse);
+        stopLoading();
+        goToResult();
+      }catch {
+  setError("An error occurred while generating the email. Please try again later.")
+  setTimeout(() => setError(null), 6000)
+  stopLoading()
+}
       stopLoading();
-      goToResult();
     }
+
+      
+    
 
   return (
     <>
@@ -90,6 +107,13 @@ import { getToken } from '../Helper/tokenHelper';
 
 
   <div className='h-auto w-full border-gray-200 border-2 flex flex-col rounded-2xl mx-auto p-6 font-semibold' style={{color: colors.textSecondary}}>
+{error && <div className='flex justify-center items-center'>
+  <div className='w-auto md:w-1/2'>
+    <ErrorCompo error={error} />
+  </div>
+</div>  
+}
+
 {activeTab === "result"?
 
 <div>

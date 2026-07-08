@@ -38,18 +38,55 @@ JSON Structure:
   "freelance_bio": "Hook Line\\n\\n✅ Deliverable 1\\n\\n✅ Deliverable 2"
 }`;
 
-const response = await callGemini(prompt);
+try{
 
-    const { data, error } = await supabase
-        .from('BioWriter')
-        .insert({
-            user_id: user_id,
-            ai_output: response,
-            skills_input : Array.isArray(skills) ? skills.join(", ") : skills,
 
+  const aiResponse = await callGemini(prompt);
+    if(aiResponse && aiResponse.error){
+
+        return res.status(500).json({ 
+              success: false, 
+              message: "Didn't get valid response from AI.",
+              details: aiResponse.rawText 
+          });
+    }
+
+  
+      const { data, error: supabaseError } = await supabase
+          .from('BioWriter')
+          .insert({
+              user_id: user_id,
+              ai_output: aiResponse,
+              skills_input : Array.isArray(skills) ? skills.join(", ") : skills,
+  
+          });
+           if(supabaseError){
+
+        return res.status(500).json({ 
+               success: false, 
+               message: "Failed to insert data.",
+               error: supabaseError.message
+           });
+        }
+           
+        return res.status(201).json({ 
+            success: true, 
+            aiResponse ,
+            message: "Bio generated and saved successfully."
         });
+        console.log(data,"data is here");
+}
 
-        res.json({ response, data });
+
+        catch(error){
+    console.error(error,"unexpected error occurred");
+    return res.status(500).json({ 
+        success: false, 
+        message: "An unexpected error occurred.",
+        error: error.message
+    });
+
+}
 })
 
 module.exports = router;
