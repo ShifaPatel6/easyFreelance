@@ -4,11 +4,11 @@ const express = require('express')
 const router = express.Router()
 const verifyUser = require('../middlewares/verifyUser')
 
- router.post('/' , verifyUser, async(req,res)=>{
- const{brief} =req.body
- const user_id = req.user.id;
- 
-const prompt = `You are an adaptive AI project assistant. Your primary instruction is to analyze the language and script of the provided Client Brief, and match it 100% in your JSON response fields.
+router.post('/', verifyUser, async (req, res) => {
+    const { brief } = req.body
+    const user_id = req.user.id;
+
+    const prompt = `You are an adaptive AI project assistant. Your primary instruction is to analyze the language and script of the provided Client Brief, and match it 100% in your JSON response fields.
 
 Client Brief:
 "${brief}"
@@ -35,56 +35,80 @@ JSON Structure:
   "questions to ask client": "❓ Question one.\\n\\n❓ Question two.",
   "Project Complexity": "Low/Medium/High (Translate this status word to the input language if appropriate, or keep it standard)",
   "price_range": "Estimated budget range (Use currency symbol matching the input context, e.g., $ or ₹)"
-}`;
+}`
 
-try
-{
+    try {
+        const aiResponse = await callGemini(prompt)
 
-    const aiResponse = await callGemini(prompt)
-
-    if(aiResponse && aiResponse.error){
-
-        return res.status(500).json({ 
-              success: false, 
-              message: "Didn't get valid response from AI.",
-              details: aiResponse.rawText 
-          });
-    }
-
-       const { data, error:supabaseError  } = await supabase
-        .from('Analyzer')
-        .insert({
-            user_id: user_id,
-            input_text: brief,
-            ai_output: aiResponse
-        })
-
-    if(supabaseError){
-
-        return res.status(500).json({ 
-               success: false, 
-               message: "Failed to insert data.",
-               error: supabaseError.message
-           });
+        if (aiResponse && aiResponse.error) {
+            return res.status(500).json({
+                success: false,
+                message: "Didn't get valid response from AI.",
+                details: aiResponse.rawText
+            });
         }
-        
-        return res.status(201).json({ 
-            success: true, 
-            aiResponse, 
-            data 
+
+        const { data, error: supabaseError } = await supabase
+            .from('Analyzer')
+            .insert({
+                user_id: user_id,
+                input_text: brief,
+                ai_output: aiResponse
+            })
+
+        if (supabaseError) {
+            return res.status(500).json({
+                success: false,
+                message: "Failed to insert data.",
+                error: supabaseError.message
+            });
+        }
+
+        return res.status(201).json({
+            success: true,
+            aiResponse,
+            data
         });
-    
-    
-}
-catch(error){
-    console.error(error,"unexpected error occurred");
-    return res.status(500).json({ 
-        success: false, 
-        message: "An unexpected error occurred.",
-        error: error.message
-    });
 
-}
+    } catch (error) {
+        console.error(error, "unexpected error occurred");
+        return res.status(500).json({
+            success: false,
+            message: "An unexpected error occurred.",
+            error: error.message
+        });
+    }
+})  // ← yeh closing tha jo galat jagah tha
 
- })
+router.get('/history', verifyUser, async (req, res) => {
+    const user_id = req.user.id;
+
+    try {
+        await supabase
+            .from('Analyzer')
+            .select('input_text, ai_output, created_at')
+            .eq('user_id', user_id)
+            .order('created_at', { ascending: false })
+            .then(({ data, error }) => {
+                if (error) {
+                    return res.status(500).json({
+                        success: false,
+                        message: "Failed to fetch history.",
+                        error: error.message
+                    });
+                }
+                return res.status(200).json({
+                    success: true,
+                    data
+                });
+            });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "An unexpected error occurred."
+        });
+    }
+})
+
 module.exports = router;

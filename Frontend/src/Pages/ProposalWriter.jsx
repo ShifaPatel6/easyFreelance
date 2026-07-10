@@ -19,7 +19,8 @@ import { Loader } from '../components/Loader';
 
 export const ProposalWriter = () => {
     const [label, setLabel] = useState('');
-    const [error, setError] = useState({});
+    const [error, setError] = useState();
+    const[validate , setValidate] = useState({})
          const[result,setResult]=useState('');
              const { activeTab,  goToResult, goToForm } = TabHooks()
              const { isLoading, startLoading, stopLoading } = useLoading()
@@ -97,8 +98,7 @@ export const ProposalWriter = () => {
 </div>  
 }
                   {activeTab ==="result" ?
-                  
-             
+                    
         <ResultCompo result={result.aiResponse} onBack={goToForm} />
       :
 
@@ -110,7 +110,6 @@ export const ProposalWriter = () => {
           <Loader variant="dot" />  
         </div>
       )}
-
                   <div className={isLoading ? 'opacity-20 pointer-events-none' : ''}>
 
       
@@ -171,15 +170,15 @@ export const ProposalWriter = () => {
                                     value={ProposalInfo.experience}
                                     onChange={(e) => {setProposalInfo('experience',e.target.value);
                                     if(isNaN(e.target.value)){
-                                            setError({...error, experience:"Please enter valid experience in numbers"})
+                                            setValidate({...validate, experience:"Please enter valid experience in numbers"})
                                     }else{
-                                        setError({...error, experience:""})
+                                        setValidate({...validate, experience:""})
                                     }}
                                 }
                                     type="text"
                                     className='w-full p-2 rounded-xl border-gray-300 border-2'
                                 />
-                                {error.experience && <span className='text-red-500 text-sm'>{error.experience}</span>}
+                                {validate.experience && <span className='text-red-500 text-sm'>{validate.experience}</span>}
                             </div>
                             <div className='flex flex-col gap-2 flex-1'>
                                 <InputTag>Expected budget (Rs.)</InputTag>
@@ -189,16 +188,16 @@ export const ProposalWriter = () => {
                                     onChange={(e) => {
                                         setProposalInfo('budget',e.target.value);
                                         if(isNaN(e.target.value)){
-                                            setError({...error,budget:"Please enter valid budget in numbers"});
+                                            setValidate({...validate,budget:"Please enter valid budget in numbers"});
                                         }else{
-                                            setError({...error ,budget:""});
+                                            setValidate({...validate ,budget:""});
                                         }
                                     }}
                                     
                                     type="text"
                                     className='w-full p-2 rounded-xl border-gray-300 border-2'
                                 />
-                                {error.budget && <span className='text-red-500 text-sm'>{error.budget}</span>}
+                                {validate.budget && <span className='text-red-500 text-sm'>{validate.budget}</span>}
                             </div>
                             <div className='flex flex-col gap-2 flex-1 '>
                                 <InputTag>Timeline (weeks)</InputTag>
@@ -208,9 +207,9 @@ export const ProposalWriter = () => {
                                     onChange={(e) => {
                                         setProposalInfo('timeline',e.target.value);
                                         if(isNaN(e.target.value)){
-                                            setError({...error,timeline:"Please enter valid timeline in numbers"});
+                                            setValidate({...validate,timeline:"Please enter valid timeline in numbers"});
                                         }else{
-                                            setError({...error ,timeline:""});
+                                            setValidate({...validate ,timeline:""});
                                         }
                                     }}
                                     
@@ -218,7 +217,7 @@ export const ProposalWriter = () => {
                                     className='w-full p-2 rounded-xl border-gray-300 border-2 focus:outline-none'
                                 />
             
-                                {error.timeline && <span className='text-red-500 text-sm'>{error.timeline}</span>}
+                                {validate.timeline && <span className='text-red-500 text-sm'>{validate.timeline}</span>}
                             </div>
                         </div>
 
