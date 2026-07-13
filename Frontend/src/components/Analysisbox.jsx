@@ -5,7 +5,6 @@ import React from 'react'
 
 const entries = Object.entries(data); // Array format: [ [key, value], [key, value] ]
   const [key, value] = entries[indexNumber];
-    console.log("key:", key) // ← ye add karo
 
 const bulletMap = {
   questions: (item, i) => `Q${i + 1}. ${item}`,

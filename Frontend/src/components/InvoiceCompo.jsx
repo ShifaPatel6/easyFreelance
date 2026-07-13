@@ -2,7 +2,7 @@ import { RegularButton } from '../CommonCss/commoncss'
 import useWorkedItemStore from '../Store/WorkedItemStore'
 import { invoiceStyles as s } from '../CommonCss/InvoicePdfStyle'
 import CopyInvoice from '../DocumentConvert/CopyInvoice'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import CopyToast from './CopyToast'
 import { getToken } from '../Helper/tokenHelper'
 import useLoading from '../Hooks/LoadingHook'
@@ -14,6 +14,10 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
   const getGst      = useWorkedItemStore((state) => state.getGst)
   const getTotal    = useWorkedItemStore((state) => state.getTotal)
   const { isLoading, startLoading, stopLoading } = useLoading()
+  const [invoiceNumber, setInvoiceNumber] = useState(null)
+
+    const [result , setResult] = useState();
+  
 
   const[error , setError] = useState()
 
@@ -27,31 +31,54 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
     setTimeout(()=>setShowCopy(false),2000)
 
   }
-  
- 
-   const handleInvoiceSave = async () => {
-      startLoading()
-      try{
-          const response = await getToken({
-            url: 'http://localhost:5000/ProposalWriter',
-            options: {
-              method: "POST",
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ clientName: clientDetail.name, dueDate : clientDetail.dueDate,
-                total:getTotal()
-               })
-            }
-          })
-          
-  
-      }catch {
-    setError("An error occurred while generating the email. Please try again later.")
-    setTimeout(() => setError(null), 6000)
-  
+  useEffect(() => {
+  const fetchInvoiceNumber = async () => {
+    const response = await getToken({
+      url: 'http://localhost:5000/Invoice/generate-number',
+      options: { method: 'GET' }
+    })
+    const data = await response.json()
+    setInvoiceNumber(data.invoice_number)
   }
-  await generatePDF(clientDetail);
-    stopLoading()
+
+  fetchInvoiceNumber()
+}, [])
+  
+  const handleInvoiceSave = async () => {
+  startLoading()
+  
+  try {
+    // Step 1 — DB mein save karo
+    const response = await getToken({
+      url: 'http://localhost:5000/Invoice/save',
+      options: {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          clientName: clientDetail.name, 
+          dueDate: clientDetail.dueDate,
+          total: getTotal(),
+          invoiceNumber: invoiceNumber // ← already fetch kiya hua
+        })
+      }
+    })
+
+    const data = await response.json()
+
+    if (!data.success) {
+      throw new Error(data.message)
     }
+
+  } catch {
+    // DB fail hua — but PDF toh download hogi!
+    setError("Invoice save failed!")
+    setTimeout(() => setError(null), 6000)
+  }
+
+  // Step 2 — PDF hamesha download hogi
+  await generatePDF(clientDetail)
+  stopLoading()
+}
 
   return (
     <>
@@ -66,7 +93,7 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
             </div>
             <div style={s.invoiceTitleBlock}>
               <div style={s.invoiceTitle}>Invoice</div>
-              <div style={s.invoiceNumber}>#INV-2026-001</div>
+              <div style={s.invoiceNumber}>{invoiceNumber || "01"}</div>
             </div>
           </div>
 

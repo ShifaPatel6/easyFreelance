@@ -21,7 +21,7 @@ import ErrorCompo from '../components/ErrorCompo';
     try{
 
       const response = await getToken({
-        url: 'http://localhost:5000/briefAnalyzer',
+        url: 'http://localhost:5000/BriefAnalyzer',
         options: {
           method: "POST",
           headers: { 'Content-Type': 'application/json' },
@@ -33,7 +33,6 @@ import ErrorCompo from '../components/ErrorCompo';
       throw new Error(errData.message || "Something went wrong")
     }
       const data = await response.json()
-      console.log(data,"data is here");
       
       setResult(data.aiResponse)
        stopLoading();

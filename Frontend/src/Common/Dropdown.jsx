@@ -23,7 +23,6 @@ export const Dropdown = ({options=[], onChange ,placeholder}) => {
         setIsOpen(false);
         onChange(options.value);
     }
-    console.log(inputValue)
 
   return (
     <>

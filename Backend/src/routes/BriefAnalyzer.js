@@ -78,7 +78,7 @@ JSON Structure:
             error: error.message
         });
     }
-})  // ← yeh closing tha jo galat jagah tha
+})  
 
 router.get('/history', verifyUser, async (req, res) => {
     const user_id = req.user.id;
@@ -106,7 +106,6 @@ router.get('/history', verifyUser, async (req, res) => {
                  .replace(/🔹|✅|❓|⚠️|💡|🔸/g, '')
           .replace(/[*#`~]/g, '')
           .trim()
-        // console.log(cleaned,"clean OP");
     })
     
                 return {

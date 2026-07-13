@@ -20,9 +20,7 @@ export const Register = () => {
 const handleSignup= async (e)=>{
   e.preventDefault();
   setLoading(true);
-  setError(null);
-  console.log("login enterd");
-  
+  setError(null);  
 
   const {data,error} = await supabase.auth.signUp({
     email,password,name

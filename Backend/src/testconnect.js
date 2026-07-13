@@ -16,7 +16,7 @@ async function Users(){
     
     console.log(data , error);
     if(error){
-    console.log("DB didnt connect",error);
+    console.log("Supabase connection failed",error);
     
 }else{
     console.log("Supabase Connected Succesfully");

@@ -6,6 +6,7 @@ const briefAnalyzerRouter = require('./src/routes/BriefAnalyzer')
 const ProposalWriterRouter = require('./src/routes/ProposalWriter')
 const FollowUpWriterRouter = require('./src/routes/FollowUpWriter')
 const BioWriterRouter = require('./src/routes/BioWriter')
+const InvoiceSaveRouter = require('./src/routes/InvoiceHistory')
 const cors = require('cors')
 
 
@@ -27,7 +28,8 @@ app.listen(port,()=>{
     
 })
 
-app.use('/briefAnalyzer', briefAnalyzerRouter);
+app.use('/BriefAnalyzer', briefAnalyzerRouter);
 app.use('/ProposalWriter', ProposalWriterRouter);
 app.use('/FollowUpWriter', FollowUpWriterRouter);  
 app.use('/BioWriter', BioWriterRouter);
+app.use('/Invoice',InvoiceSaveRouter)

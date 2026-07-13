@@ -1,6 +1,5 @@
 // InvoiceStyles.js — All styles for InvoiceCompo
 const isLaptop = window.innerWidth >= 1024
-console.log(isLaptop,"width of laptop");
 
 export const invoiceStyles = {
 
@@ -9,7 +8,7 @@ export const invoiceStyles = {
     backgroundColor: '#ffffff',
     padding: '10px',
       width: '100%',
-  maxWidth: isLaptop ? '700px' : '600px',  // laptop pe 700, niche 500
+  maxWidth: isLaptop ? '700px' : '600px',  // on laptop 700, on lower 500
     fontFamily: 'Arial, sans-serif',
     fontSize: '14px',
     color: '#1a1a1a',

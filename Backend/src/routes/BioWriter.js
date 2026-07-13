@@ -74,12 +74,10 @@ try{
             aiResponse ,
             message: "Bio generated and saved successfully."
         });
-        console.log(data,"data is here");
 }
 
 
         catch(error){
-    console.error(error,"unexpected error occurred");
     return res.status(500).json({ 
         success: false, 
         message: "An unexpected error occurred.",

@@ -2,8 +2,6 @@ import useWorkedItemStore from '../Store/WorkedItemStore'
 import useInvoicedetailStore from '../Store/UserDetailStore';
 
 const CopyInvoice = async () => {
-
-  console.log("came in copy util");
   
 
   //added store state like this becuase hooks onlycalls in component and custom hooks not in handlers

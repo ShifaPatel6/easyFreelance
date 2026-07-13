@@ -15,9 +15,7 @@ export const History = () => {
   const { startLoading, stopLoading } = useLoading()  
 
   const handleViewModal = useCallback((row) => {
-    console.log("row selected" ,row)
     setSelectedRow(row);
-    console.log("selected row ", row);
     
     setOpenModal(true);
   }, []);
@@ -41,7 +39,6 @@ export const History = () => {
            }
              const data = await response.json()
              setResult(data.data)
-             console.log(data,"data");
              
              
          }catch {

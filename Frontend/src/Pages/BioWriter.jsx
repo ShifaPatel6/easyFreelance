@@ -46,7 +46,6 @@ const[error ,setError] = useState(null)
       throw new Error(errData.message || "Something went wrong")
       }
       const data = await response.json();
-      console.log(data,"data is here");
        stopLoading();
       setResult(data.aiResponse);
       goToResult();
