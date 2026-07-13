@@ -1,9 +1,12 @@
 import React from 'react'
 import { colors,SecondaryButton,StyledHeader } from '../CommonCss/commoncss';
-import usePlanStore from '../Store/PlanStore';
- const MainHeader = () => {
-  const plan = usePlanStore((state)=> state.plan)
-  const name = usePlanStore((state)=> state.name)
+import useInvoicedetailStore from '../Store/UserDetailStore';
+import Logout from '../Pages/Logout';
+
+
+const MainHeader = () => {
+  const userDetail =useInvoicedetailStore((state)=>state.userDetail) 
+
   
   return (
     <>
@@ -17,12 +20,13 @@ import usePlanStore from '../Store/PlanStore';
 </div>
     <div style={{color:colors.lightBackground ,fontSize:"20px", fontWeight:"bold"}}>
 
+
     GigMate
     </div>
         </div>
-        <div className=' mr-8'>
-
-   <SecondaryButton  >{name} ({plan} plan)</SecondaryButton>
+        <div className=' mr-8 flex items-center gap-2'>
+        <SecondaryButton  >{userDetail.name}</SecondaryButton>
+        <Logout/>
         </div>
 
       </div>

@@ -19,7 +19,6 @@ const useInvoicedetailStore = create(persist((set,get)=>({
         dueDate:'',
         invoiceNumber:'',
         invoiceAmount:'',
-     
 
     },
     //setter

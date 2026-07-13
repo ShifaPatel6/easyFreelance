@@ -84,24 +84,44 @@ router.get('/history', verifyUser, async (req, res) => {
     const user_id = req.user.id;
 
     try {
-        await supabase
+        const { data, error }=  await supabase
             .from('Analyzer')
             .select('input_text, ai_output, created_at')
             .eq('user_id', user_id)
             .order('created_at', { ascending: false })
-            .then(({ data, error }) => {
-                if (error) {
+                
+            if (error) {
                     return res.status(500).json({
                         success: false,
                         message: "Failed to fetch history.",
                         error: error.message
                     });
                 }
-                return res.status(200).json({
-                    success: true,
-                    data
-                });
-            });
+        const cleanOutput = data.map(item=>{
+            const parsedData = JSON.parse(item.ai_output) //object
+            const cleaned ={}
+
+            Object.keys(parsedData).forEach(key=>{
+                cleaned[key]=String(parsedData[key])
+                 .replace(/🔹|✅|❓|⚠️|💡|🔸/g, '')
+          .replace(/[*#`~]/g, '')
+          .trim()
+        // console.log(cleaned,"clean OP");
+    })
+    
+                return {
+            input_text: item.input_text,
+            ai_output: cleaned,
+            created_at: item.created_at
+        }
+        
+})                  
+return res.status(200).json({
+    success: true,
+    data:cleanOutput
+    
+});
+           
     } catch (error) {
         console.error(error);
         return res.status(500).json({

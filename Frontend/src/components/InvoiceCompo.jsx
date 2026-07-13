@@ -1,17 +1,21 @@
 import { RegularButton } from '../CommonCss/commoncss'
 import useWorkedItemStore from '../Store/WorkedItemStore'
-import InvoicePdf from '../DocumentConvert/generatePDF'
 import { invoiceStyles as s } from '../CommonCss/InvoicePdfStyle'
 import CopyInvoice from '../DocumentConvert/CopyInvoice'
 import { useState } from 'react'
 import CopyToast from './CopyToast'
+import { getToken } from '../Helper/tokenHelper'
+import useLoading from '../Hooks/LoadingHook'
+import generatePDF from '../DocumentConvert/generatePDF'
 
 const InvoiceCompo = ({ userDetail, clientDetail }) => {
   const items      = useWorkedItemStore((state) => state.items)
   const getSubTotal = useWorkedItemStore((state) => state.getSubTotal)
   const getGst      = useWorkedItemStore((state) => state.getGst)
   const getTotal    = useWorkedItemStore((state) => state.getTotal)
+  const { isLoading, startLoading, stopLoading } = useLoading()
 
+  const[error , setError] = useState()
 
   const [showCopy ,setShowCopy] =useState(false)
 
@@ -23,9 +27,31 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
     setTimeout(()=>setShowCopy(false),2000)
 
   }
-  const handleDownload =()=>{
-    InvoicePdf(clientDetail)
+  
+ 
+   const handleInvoiceSave = async () => {
+      startLoading()
+      try{
+          const response = await getToken({
+            url: 'http://localhost:5000/ProposalWriter',
+            options: {
+              method: "POST",
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ clientName: clientDetail.name, dueDate : clientDetail.dueDate,
+                total:getTotal()
+               })
+            }
+          })
+          
+  
+      }catch {
+    setError("An error occurred while generating the email. Please try again later.")
+    setTimeout(() => setError(null), 6000)
+  
   }
+  await generatePDF(clientDetail);
+    stopLoading()
+    }
 
   return (
     <>
@@ -108,7 +134,7 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
       </div>
 
       <div className='flex gap-4 mt-4'>
-        <RegularButton className='h-auto lg:h-10 px-6 w-auto 'onClick={handleDownload}  disabled={!userDetail.name} >
+        <RegularButton className='h-auto lg:h-10 px-6 w-auto 'onClick={handleInvoiceSave}  disabled={!userDetail.name} >
           Download Pdf
         </RegularButton>
 

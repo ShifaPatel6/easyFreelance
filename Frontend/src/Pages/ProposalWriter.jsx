@@ -12,11 +12,6 @@ import { Loader } from '../components/Loader';
     import { getToken } from '../Helper/tokenHelper';
     import usePlanStore from '../Store/PlanStore';
     import ErrorCompo from '../components/ErrorCompo';
-
-
-
-
-
 export const ProposalWriter = () => {
     const [label, setLabel] = useState('');
     const [error, setError] = useState();

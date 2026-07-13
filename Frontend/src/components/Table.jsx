@@ -90,16 +90,35 @@ const itemsPerPage = 4;
             </tr>
             </thead>
                <tbody>
-        {currentItems.map((row, rowId) => (
-            <tr key={rowId}>
-            <td className='border p-3'>{row.created_at}</td>
-            <td className='border p-3'>{row.input_text}....</td>
-            <td className='border p-3 flex  justify-between'>{row.ai_output}....
-              <span>{viewDes && <Eye style={{ cursor: 'pointer' }} onClick={() => onViewModal(row)}  />}</span>
-            </td>
-            </tr>
-        ))}
-        </tbody>
+  {currentItems.map((row, rowId) => (
+    <tr key={rowId}>
+      
+      {/* Date */}
+      <td className='border p-3'>
+        {new Date(row.created_at).toLocaleDateString('en-IN')}
+      </td>
+
+      {/* Client Message */}
+      <td className='border p-3'>
+        {row.input_text}....
+      </td>
+
+      {/* AI Analysis — object nahi, string field */}
+      <td className='border p-3 flex justify-between'>
+        {row.ai_output.what_client_want}....
+        <span>
+          {viewDes && 
+            <Eye 
+              style={{ cursor: 'pointer' }} 
+              onClick={() => onViewModal(row)} 
+            />
+          }
+        </span>
+      </td>
+
+    </tr>
+  ))}
+</tbody>
 
         </TableContainer>
         <div className='flex justify-center'>
