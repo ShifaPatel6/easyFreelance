@@ -7,6 +7,8 @@ import usePlanStore from '../Store/PlanStore';
 
 const MainHeader = () => {
 const name = usePlanStore((state)=>state.name)
+console.log(name,"name here");
+
   
   return (
     <>
@@ -23,7 +25,7 @@ const name = usePlanStore((state)=>state.name)
     </div>
         </div>
         <div className=' mr-8 flex items-center gap-2'>
-        <SecondaryButton>{name}</SecondaryButton>
+        <SecondaryButton>{name} </SecondaryButton>
         <Logout/>
         </div>
 

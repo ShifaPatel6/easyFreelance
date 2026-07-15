@@ -13,7 +13,6 @@ export const Login = () => {
   const [loading, setLoading]   = useState(false)
   const navigate = useNavigate()
   const setPlan = usePlanStore((state)=> state.setPlan)
-  
 
 
   const handleLogin = async (e) => {
@@ -21,23 +20,31 @@ export const Login = () => {
     setLoading(true)
     setError(null)
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    })
+   const { data, error } = await supabase.auth.signInWithPassword({
+  email,
+  password
+})
 
-    if (error) {
-      setError(error.message)
-    } else {
-      const {data:UserData}= await supabase
-      .from('User')
-     .select('name, plan')
-      .single()
-      navigate('/BriefAnalyzer')  
-      const name = UserData.name.split(' ')[0]
-      setPlan(UserData.plan, name)     
+if (error) {
+  setError(error.message)
+} else {
+  const { data: UserData, error: userError } = await supabase
+    .from('User')
+    .select('name')
+    .eq('id', data.user.id) 
+    .single()
+
+  if (userError || !UserData) {
+    setError('Could not fetch user profile')
+    setLoading(false)
+    return
+  }
+
+  const name = UserData.name.split(' ')[0]
+  setPlan(name)
+  navigate('/BriefAnalyzer')
 }
-  setLoading(false)
+setLoading(false)
 }
   return (
     <div className="flex flex-col justify-center items-center min-h-screen w-full">
