@@ -29,7 +29,7 @@ const[error ,setError] = useState(null)
       try{
 
         const response = await getToken({
-              url:`'${import.meta.env.VITE_API_URL}/BioWriter`,
+              url:`${import.meta.env.VITE_API_URL}/BioWriter`,
               options: {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },

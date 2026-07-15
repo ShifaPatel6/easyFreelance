@@ -50,7 +50,7 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
   try {
     // Step 1 — DB mein save karo
     const response = await getToken({
-      url: 'http://localhost:5000/Invoice/save',
+      url: `${import.meta.env.VITE_API_URL}/Invoice/save`,
       options: {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },

@@ -11,9 +11,11 @@ const cors = require('cors')
 
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Aapka frontend URL
-    methods: ['GET', 'POST'],        // Jo methods aap allow karna chahte hain
-    credentials: true                // Agar cookies ya headers bhej rahe hain
+    origin: ['http://localhost:5173',
+       ' https://gigmate15.vercel.app'
+    ],
+    methods: ['GET', 'POST'],        // Allowed methods
+    credentials: true                // cookies or headers
 }));
 
 app.use(express.json());
