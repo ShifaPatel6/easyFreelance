@@ -1,5 +1,5 @@
 import { CirclePlus } from 'lucide-react';
-import Workeditem from './Workeditem';
+import WorkedItem from './WorkedItem';
 import useWorkedItemStore from'../Store/WorkedItemStore'
 import {ContainerText} from "../CommonCss/commoncss"
 
@@ -26,7 +26,7 @@ import {ContainerText} from "../CommonCss/commoncss"
   </div>
  <div className={`w-full flex flex-col gap-3 justify-start ${items.length > 4 ? 'overflow-y-scroll h-56' : ''} `}>
    {   items.map((item) => (
-    <Workeditem key={item.id} item={item} onItemChange={updateItem} />
+    <WorkedItem key={item.id} item={item} onItemChange={updateItem} />
 
    ))}
    </div>

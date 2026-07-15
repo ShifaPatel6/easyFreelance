@@ -2,7 +2,7 @@ import React from 'react'
 import InputCompo from '../Common/InputCompo';
 import {memo} from 'react';
 
- const Workeditem = memo(({item , onItemChange}) => {
+ const WorkedItem = memo(({item , onItemChange}) => {
   return (
 <div className='flex justify-around items-center gap-3' key={item.id}>
 
@@ -13,4 +13,4 @@ import {memo} from 'react';
     </div>  
     )
 })
-export default Workeditem;
+export default WorkedItem;
