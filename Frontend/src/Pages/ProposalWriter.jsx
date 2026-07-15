@@ -41,7 +41,7 @@ export const ProposalWriter = () => {
     startLoading()
     try{
         const response = await getToken({
-          url: 'http://localhost:5000/ProposalWriter',
+          url: `${import.meta.env.VITE_API_URL}/ProposalWriter`,
           options: {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },

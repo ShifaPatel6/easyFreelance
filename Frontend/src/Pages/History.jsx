@@ -26,7 +26,7 @@ export const History = () => {
      startLoading()
          try{
              const response = await getToken({
-               url: 'http://localhost:5000/briefAnalyzer/history',
+               url: `${import.meta.env.VITE_API_URL}/briefAnalyzer/history`,
                options: {
                  method: "GET",
                  headers: { 'Content-Type': 'application/json' },

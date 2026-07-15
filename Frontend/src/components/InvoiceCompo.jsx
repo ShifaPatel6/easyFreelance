@@ -34,7 +34,7 @@ const InvoiceCompo = ({ userDetail, clientDetail }) => {
   useEffect(() => {
   const fetchInvoiceNumber = async () => {
     const response = await getToken({
-      url: 'http://localhost:5000/Invoice/generate-number',
+      url: `${import.meta.env.VITE_API_URL}/Invoice/generate-number`,
       options: { method: 'GET' }
     })
     const data = await response.json()

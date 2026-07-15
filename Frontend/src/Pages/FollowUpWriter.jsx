@@ -53,7 +53,7 @@ import ErrorCompo from '../components/ErrorCompo';
       try{
 
         const response = await getToken({
-              url: 'http://localhost:5000/FollowUpWriter',
+              url: `${import.meta.env.VITE_API_URL}/FollowUpWriter`,
               options: {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },

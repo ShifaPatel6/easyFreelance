@@ -2,16 +2,15 @@
 import React, { useState } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { supabase } from '../Supabse/supabseClient';
-import { Link } from 'react-router-dom';
-import { colors } from '../CommonCss/commoncss';
-
+import { Link, Navigate } from 'react-router-dom';
+import { colors, RegularButton } from '../CommonCss/commoncss';
 
 export const Register = () => {
     const [email,setEmail] = useState("");
     const [name,setName] = useState("");
     const [password , setPassword] = useState("");
     const[consirmPass ,setconfirmPass] =useState("")
-    const [error ,setError] = useState("");
+    const [error ,setError] = useState(null);
     const [showPassword, setShowPassword] = useState(false);
     const[loading , setLoading] = useState(false)
 
@@ -43,11 +42,12 @@ const handleSignup= async (e)=>{
      if (dbError) {
       setError(dbError.message)
     } else {
-     <Link to="./landing"/>
+     <Navigate to="/"/>
     }
   setLoading(false);
 
 }
+const disableHelper = !name || !email || !password || !consirmPass;
  
   return (
     <>
@@ -141,9 +141,9 @@ const handleSignup= async (e)=>{
     </div>
 
     <div className='flex justify-center mt-2'>
-      <button className="rounded-full text-white w-36 h-12 font-semibold" onClick={handleSignup}  style={{backgroundColor:colors.background}}>
+      <RegularButton className="rounded-full text-white w-36 h-12 font-semibold" onClick={handleSignup} disabled ={disableHelper}>
         {loading ? "loading..." : "Register"}
-      </button>
+      </RegularButton>
     </div>
   
     <div className='flex justify-center'>

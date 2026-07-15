@@ -21,7 +21,7 @@ import ErrorCompo from '../components/ErrorCompo';
     try{
 
       const response = await getToken({
-        url: 'http://localhost:5000/BriefAnalyzer',
+        url: `${import.meta.env.VITE_API_URL}/BriefAnalyzer`,
         options: {
           method: "POST",
           headers: { 'Content-Type': 'application/json' },
