@@ -2,11 +2,11 @@ import React from 'react'
 import { colors,SecondaryButton,StyledHeader } from '../CommonCss/commoncss';
 import useInvoicedetailStore from '../Store/UserDetailStore';
 import Logout from '../Pages/Logout';
+import usePlanStore from '../Store/PlanStore';
 
 
 const MainHeader = () => {
-  const userDetail =useInvoicedetailStore((state)=>state.userDetail) 
-
+const name = usePlanStore((state)=>state.name)
   
   return (
     <>
@@ -19,13 +19,11 @@ const MainHeader = () => {
   </div>
 </div>
     <div style={{color:colors.lightBackground ,fontSize:"20px", fontWeight:"bold"}}>
-
-
     GigMate
     </div>
         </div>
         <div className=' mr-8 flex items-center gap-2'>
-        <SecondaryButton  >{userDetail.name}</SecondaryButton>
+        <SecondaryButton>{name}</SecondaryButton>
         <Logout/>
         </div>
 
