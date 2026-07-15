@@ -12,7 +12,7 @@ const cors = require('cors')
 
 app.use(cors({
     origin: ['http://localhost:5173',
-       'https://gigmateaitool.vercel.app'  
+       'https://gigmatefrontend.vercel.app'  
     ],
     methods: ['GET', 'POST'],        // Allowed methods
     credentials: true                // cookies or headers
