@@ -22,14 +22,12 @@ app.get('/',(req,res)=>{
     res.send("Backend is running");
 })
 
-app.listen(port,()=>{
-    console.log(`server is running on port ${port}`);
-     testConnection();
-    
-})
+
 
 app.use('/BriefAnalyzer', briefAnalyzerRouter);
 app.use('/ProposalWriter', ProposalWriterRouter);
 app.use('/FollowUpWriter', FollowUpWriterRouter);  
 app.use('/BioWriter', BioWriterRouter);
 app.use('/Invoice',InvoiceSaveRouter)
+
+module.exports= app
