@@ -58,7 +58,7 @@ setLoading(false)
           <label className='font-semibold'>Email</label>
           <input
             type="email"
-            placeholder="priya@gmail.com"
+            placeholder="abc@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
