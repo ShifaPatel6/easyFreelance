@@ -1,31 +1,26 @@
-import React from 'react'
 import { NotepadText,LaptopMinimalCheck ,File ,Clock3,UserRoundPen,Menu} from 'lucide-react';
-import { colors,ContainerText ,NavItem,NavContainer} from '../CommonCss/commoncss';
+import { colors,NavItem,NavContainer} from '../CommonCss/commoncss';
 import { Link } from 'react-router-dom';
-import{useState} from 'react'
 import useToggleNav from '../Store/ToggleNav'
 
  const Navbar = () => {
   const { isToggleNav, toggleNav } =  useToggleNav()
-
-
-   
   return (
 
     <>
+   <div className='flex'>
+      
+  <Menu size={20} className='block md:hidden fixed left-4 top-16 z-50'  onClick={toggleNav}/>
+ </div>
 <NavContainer  $isOpen={isToggleNav}>      
   
-   <NavItem>
-      
-  <Menu size={20} className='block md:hidden ' onClick={toggleNav}/>
-  <h1 className='hidden md:block uppercase' onClick={toggleNav} style={{color:colors.background}}>Tools</h1>  
- </NavItem>
- 
+   <h1 className='hidden md:block uppercase' onClick={toggleNav} style={{color:colors.background}}>Tools</h1>  
+
    < div className='gap-4 flex flex-col '>
         <Link to="/BriefAnalyzer">
         <NavItem>
        <Clock3 size={20} style={{color:colors.Menu}} strokeWidth={2.5}/>
-        <span   className={isToggleNav ? "block" : "hidden md:block"}>Brief Analyzer </span >
+<span className={isToggleNav ? "block" : "hidden md:block"}>Brief Analyzer</span>
         </NavItem>
         </Link>
         <Link to="/proposalWriter">

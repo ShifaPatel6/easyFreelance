@@ -1,7 +1,4 @@
-import React from 'react'
 import {RegularButton} from '../CommonCss/commoncss';
-import { colors } from '../CommonCss/commoncss';
-import { useState } from 'react';
 import { ArrowRight,ArrowLeft } from 'lucide-react';
 
 

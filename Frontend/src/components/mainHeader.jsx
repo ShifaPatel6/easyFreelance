@@ -1,14 +1,10 @@
-import React from 'react'
 import { colors,SecondaryButton,StyledHeader } from '../CommonCss/commoncss';
-import useInvoicedetailStore from '../Store/UserDetailStore';
 import Logout from '../Pages/Logout';
 import usePlanStore from '../Store/PlanStore';
 
 
 const MainHeader = () => {
 const name = usePlanStore((state)=>state.name)
-console.log(name,"name here");
-
   
   return (
     <>

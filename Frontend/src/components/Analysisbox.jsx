@@ -1,4 +1,3 @@
-import React from 'react'
 
  const Analysisbox = ({ data, indexNumber}) => {
     if (!data) return null

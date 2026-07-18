@@ -49,7 +49,6 @@ JSON Structure:
   "skills_used": "✅ Key Skill 1: How it will be applied to this brief.\\n\\n✅ Key Skill 2: How it solves their problem.\\n\\n✅ Key Skill 3: Technical advantage provided."
 }`;
 
-
 try{
 
     const aiResponse = await callGemini(prompt)

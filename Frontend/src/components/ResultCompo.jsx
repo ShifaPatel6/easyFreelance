@@ -1,10 +1,8 @@
 // components/ResultSection.jsx
-import { useEffect, useRef } from 'react'
 import {Loader} from "../components/Loader"
-  import { CircleArrowLeft } from 'lucide-react';
 
 
-const ResultCompo = ({ result, isLoading ,onBack}) => {
+const ResultCompo = ({ result, isLoading }) => {
 const lightColors = [
   "bg-blue-100",
   "bg-purple-100",

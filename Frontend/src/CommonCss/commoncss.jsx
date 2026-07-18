@@ -125,19 +125,21 @@ background: linear-gradient(
   overflow: hidden;
   background:linear-gradient(135deg, #FFFFFF 0%, #E0E7FF 50%, #C7D2FE 100%);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  width: 48px;  /* default — closed */
   transition: right 0.4s   ease-in-out;
+  display:none;
 
   @media (min-width: 768px) {
     width: 192px;  /* md:w-48 */
     position: relative;
     z-index: auto;
+    display:block;
   }
 
   ${({ $isOpen }) => $isOpen && `
     width: 224px;  /* w-56 — open */
     position: absolute;
     z-index: 50;
+    display:block;
 
     @media (min-width: 768px) {
       position: relative;
@@ -148,13 +150,14 @@ background: linear-gradient(
 export const NavItem = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   gap: 8px;
   padding: 12px;
   width: 100%;
   cursor: pointer;
   color:${colors.black};
   font-weight: 600;
+
 
   &:hover {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
