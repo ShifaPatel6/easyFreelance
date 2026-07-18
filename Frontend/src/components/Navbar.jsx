@@ -14,7 +14,7 @@ import useToggleNav from '../Store/ToggleNav'
  </div>
 <NavContainer  $isOpen={isToggleNav}>      
   
-   <h1 className='hidden md:block uppercase' onClick={toggleNav} style={{color:colors.background}}>Tools</h1>  
+   <h1 className='hidden md:block uppercase p-3' onClick={toggleNav} style={{color:colors.background}}>Tools</h1>  
 
    < div className='gap-4 flex flex-col '>
         <Link to="/BriefAnalyzer">
